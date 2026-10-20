@@ -1,0 +1,11 @@
+# Vercel
+.vercel
+
+# Dependencias / entornos (por si más adelante agregan función con service_role key)
+node_modules
+.env
+.env.*
+
+# Sistema
+.DS_Store
+*.log
