@@ -404,9 +404,9 @@
   .ex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
   @media(max-width:820px){.ex-grid{grid-template-columns:1fr}}
   .ex-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
-  .ex-prev{position:relative;height:188px;overflow:hidden;border-bottom:1px solid var(--line);background:var(--surface-2)}
-  .ex-prev iframe{width:166.6%;height:313px;border:0;transform:scale(.6);transform-origin:top left;pointer-events:none}
-  .ex-card:hover .ex-prev iframe{pointer-events:auto}
+  .ex-prev{position:relative;display:block;height:190px;overflow:hidden;border-bottom:1px solid var(--line);background:var(--surface-2)}
+  .ex-prev img{width:100%;height:190px;object-fit:cover;object-position:top left;display:block;transition:transform .35s ease}
+  .ex-card:hover .ex-prev img{transform:scale(1.04)}
   .ex-ind{position:absolute;top:8px;left:8px;background:rgba(34,58,94,.92);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px}
   .ex-body{padding:14px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
   .ex-t{font-weight:700;font-size:14.5px;color:var(--ink)}
@@ -648,19 +648,19 @@ var IDEAS = {
 var BOOK='https://book-montblanc.vercel.app/';
 var CASOS = {
   sistematizar:[
-    {t:'Modernización de Procesos de Compras', ind:'Minería', d:'Compras digitalizadas de punta a punta —solicitud, licitación, cuadro comparativo y aprobaciones— más rápidas y auditables.', url:BOOK+'demos/202608-Montblanc-Plataforma%20Compras%20DEMO.html'},
-    {t:'Secretaría del Directorio', ind:'Petróleo', d:'Firma y circulación de actas, contratos y acuerdos con bandeja por director y trazabilidad total.', url:BOOK+'demos/Secretaria%20del%20Directorio%20(demo).html'},
-    {t:'Cierre Contable de Combustible', ind:'Minería', d:'Cierre mensual automatizado: concilia el consumo, detecta sobreconsumos y genera la contabilización.', url:BOOK+'demos/Combustible%20(demo).html'}
+    {t:'Modernización de Procesos de Compras', ind:'Minería', d:'Compras digitalizadas de punta a punta —solicitud, licitación, cuadro comparativo y aprobaciones— más rápidas y auditables.', url:BOOK+'demos/202608-Montblanc-Plataforma%20Compras%20DEMO.html', prev:'previews/compras.jpg'},
+    {t:'Secretaría del Directorio', ind:'Petróleo', d:'Firma y circulación de actas, contratos y acuerdos con bandeja por director y trazabilidad total.', url:BOOK+'demos/Secretaria%20del%20Directorio%20(demo).html', prev:'previews/secretaria.jpg'},
+    {t:'Cierre Contable de Combustible', ind:'Minería', d:'Cierre mensual automatizado: concilia el consumo, detecta sobreconsumos y genera la contabilización.', url:BOOK+'demos/Combustible%20(demo).html', prev:'previews/combustible.jpg'}
   ],
   investigar:[
-    {t:'Negociación con Distribuidor', ind:'Vitivinícola', d:'Modelo que simula márgenes y escenarios de distribución y su impacto en el P&L, para negociar con cifras y no con supuestos.', url:BOOK+'demos/Modelo%20Distribucion%20Vina%20v2%20(demo).html'},
-    {t:'Should-cost de Contrato', ind:'Minería', d:'Calcula cuánto debería costar cada actividad según sus cost-drivers, para cuantificar la brecha frente a lo que se paga hoy.', url:BOOK+'demos/Should-Cost-Pozas%20v2%20(demo).html'},
-    {t:'Rediseño Organizacional (Paccard)', ind:'Automotriz', d:'Clasifica con IA las actividades reales del equipo para detectar duplicidades y rediseñar el organigrama con datos.', url:BOOK+'demos/Paccard%20(demo).html'}
+    {t:'Negociación con Distribuidor', ind:'Vitivinícola', d:'Modelo que simula márgenes y escenarios de distribución y su impacto en el P&L, para negociar con cifras y no con supuestos.', url:BOOK+'demos/Modelo%20Distribucion%20Vina%20v2%20(demo).html', prev:'previews/distribuidor.jpg'},
+    {t:'Should-cost de Contrato', ind:'Minería', d:'Calcula cuánto debería costar cada actividad según sus cost-drivers, para cuantificar la brecha frente a lo que se paga hoy.', url:BOOK+'demos/Should-Cost-Pozas%20v2%20(demo).html', prev:'previews/shouldcost.jpg'},
+    {t:'Rediseño Organizacional (Paccard)', ind:'Automotriz', d:'Clasifica con IA las actividades reales del equipo para detectar duplicidades y rediseñar el organigrama con datos.', url:BOOK+'demos/Paccard%20(demo).html', prev:'previews/paccard.jpg'}
   ],
   app:[
-    {t:'Gestión de Estacionamientos', ind:'Interno Montblanc', d:'Reserva de estacionamientos por día y semana, con reglas de prioridad y lista de espera.', url:BOOK+'demos/Estacionamientos%20(demo).html'},
-    {t:'Seguimiento de Órdenes de Trabajo', ind:'Minería', d:'Avance de una parada de planta con reporte por foto desde el celular, ruta crítica y Gantt en vivo.', url:BOOK+'demos/Mantenimiento%20Mayor%20(demo).html'},
-    {t:'Timesheet de Consultores', ind:'Interno Montblanc', d:'Registro de horas por proyecto y centro de costo, con utilización y cargabilidad en tiempo real.', url:BOOK+'demos/Timesheet%20(demo).html'}
+    {t:'Gestión de Estacionamientos', ind:'Interno Montblanc', d:'Reserva de estacionamientos por día y semana, con reglas de prioridad y lista de espera.', url:BOOK+'demos/Estacionamientos%20(demo).html', prev:'previews/estacionamientos.jpg'},
+    {t:'Seguimiento de Órdenes de Trabajo', ind:'Minería', d:'Avance de una parada de planta con reporte por foto desde el celular, ruta crítica y Gantt en vivo.', url:BOOK+'demos/Mantenimiento%20Mayor%20(demo).html', prev:'previews/mantenimiento.jpg'},
+    {t:'Timesheet de Consultores', ind:'Interno Montblanc', d:'Registro de horas por proyecto y centro de costo, con utilización y cargabilidad en tiempo real.', url:BOOK+'demos/Timesheet%20(demo).html', prev:'previews/timesheet.jpg'}
   ],
   cyber:[]
 };
@@ -946,7 +946,7 @@ function viewPregunta(kind){
       var cs=CASOS[tm.id]||[]; if(!cs.length) return '';
       return '<div class="obj-grp"><span class="obj-grp-t">'+esc(tm.titulo)+'</span><div class="ex-grid">'+
         cs.map(function(c){
-          return '<div class="ex-card"><div class="ex-prev"><iframe src="'+esc(c.url)+'" loading="lazy" title="'+esc(c.t)+'"></iframe><span class="ex-ind">'+esc(c.ind)+'</span></div>'+
+          return '<div class="ex-card"><a class="ex-prev" href="'+esc(c.url)+'" target="_blank" rel="noopener"><img src="'+esc(c.prev)+'" loading="lazy" alt="'+esc(c.t)+'"><span class="ex-ind">'+esc(c.ind)+'</span></a>'+
             '<div class="ex-body"><span class="ex-t">'+esc(c.t)+'</span><span class="ex-d">'+esc(c.d)+'</span>'+
             '<a class="ex-go" href="'+esc(c.url)+'" target="_blank" rel="noopener">Ver demo completa ↗</a></div></div>';
         }).join('')+'</div></div>';
