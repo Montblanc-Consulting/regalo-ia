@@ -100,7 +100,7 @@
     margin-inline:calc(50% - min(720px, (100vw - 48px)/2)) auto}
   @media (max-width:720px){ .hero{grid-template-columns:1fr;gap:24px;min-height:0;padding-top:6px;width:auto;margin-inline:0} }
   .hero .eyebrow{color:var(--terra)}
-  .hero h1{font-weight:700;font-size:clamp(38px,6.2vw,70px);line-height:1;letter-spacing:-.02em;margin:.2em 0 .3em}
+  .hero h1{font-weight:700;font-size:clamp(28px,3.9vw,50px);line-height:1.08;letter-spacing:-.015em;margin:.2em 0 .35em}
   .hero .lead{font-size:clamp(15.5px,1.6vw,17.5px);max-width:46ch}
   .explore-hint{text-align:center;margin:18px 0 2px;color:var(--muted);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px}
@@ -132,15 +132,18 @@
   .orbit .ring{position:absolute;border:1px solid var(--line);border-radius:50%;inset:4%;opacity:.95}
   .orbit .ring.r2{inset:17%}
   .orbit .ring.r3{inset:29%}
-  .orbit .hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:39%;height:39%;
-    border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;
-    padding:10px;box-shadow:0 26px 58px -24px rgba(34,58,94,.6),0 0 0 10px rgba(34,58,94,.05)}
+  .orbit .hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42%;height:42%;
+    border:0;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;text-align:center;
+    padding:10px;box-shadow:0 26px 58px -24px rgba(34,58,94,.6),0 0 0 10px rgba(34,58,94,.05);
+    font-family:inherit;cursor:pointer;transition:transform .16s,box-shadow .16s,background .16s}
+  .orbit .hub.hub-cta:hover{background:var(--navy-2);transform:translate(-50%,-50%) scale(1.05);
+    box-shadow:0 32px 68px -22px rgba(34,58,94,.72),0 0 0 13px rgba(34,58,94,.09)}
   .orbit .hub .k{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.72}
-  .orbit .hub .t{font-size:clamp(16px,2.4vw,22px);font-weight:700;line-height:1.08;margin-top:4px}
+  .orbit .hub .t{font-size:clamp(18px,2.7vw,25px);font-weight:700;line-height:1.08;margin-top:5px}
+  .orbit .hub .hub-go{display:block;margin-top:6px;font-size:19px;opacity:.9}
   .onode{position:absolute;width:40%;max-width:196px;background:var(--surface);border:1px solid var(--line);
-    border-radius:16px;padding:14px 16px;box-shadow:0 16px 36px -20px var(--shadow);cursor:pointer;
-    text-align:left;font-family:inherit;color:inherit;transition:transform .14s,box-shadow .14s,border-color .14s}
-  .onode:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 22px 44px -20px var(--shadow)}
+    border-radius:16px;padding:14px 16px;box-shadow:0 16px 36px -20px var(--shadow);
+    text-align:left;color:inherit}
   .onode .num{display:block;font-size:11px;letter-spacing:.14em;color:var(--muted);font-weight:700}
   .onode .lbl{display:block;font-size:15.5px;font-weight:700;line-height:1.18;margin-top:5px;color:var(--ink)}
   .onode.p1{left:0;top:4%} .onode.p2{right:0;top:15%}
@@ -375,6 +378,41 @@
   .cstep-t{display:block;font-weight:700;font-size:14.5px;margin:3px 0 2px;line-height:1.2;color:var(--ink)}
   .cstep-prov{display:block;font-size:12.5px;color:var(--accent-ink);font-weight:600}
   .cstep:hover .cstep-prov{color:var(--terra)}
+
+  /* Roadmap v2: cursos en horizontal, ejemplos con preview, botón que brilla */
+  .course-rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 4px}
+  @media(max-width:620px){.course-rail{grid-template-columns:1fr}}
+  .rail-step{display:flex;flex-direction:column;gap:3px;border:1.5px solid var(--line);border-radius:14px;
+    padding:14px;text-decoration:none;color:inherit;background:var(--surface);transition:transform .12s,box-shadow .12s}
+  .rail-step:hover{transform:translateY(-2px);box-shadow:0 12px 26px -16px var(--shadow)}
+  .rail-step.dim{opacity:.62;background:var(--surface-2)}
+  .rail-step.gift{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.10),rgba(40,66,103,.03));box-shadow:0 14px 30px -18px rgba(34,58,94,.5)}
+  .rail-top{display:flex;align-items:center;justify-content:space-between}
+  .rail-n{width:24px;height:24px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted)}
+  .rail-step.gift .rail-n{background:var(--navy);color:#fff}
+  .rail-badge{font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .rail-step.gift .rail-badge{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .rail-nivel{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:8px}
+  .rail-t{font-weight:700;font-size:14.5px;line-height:1.22;color:var(--ink)}
+  .rail-meta{font-size:12px;color:var(--muted)}
+  .rail-go{font-size:12.5px;font-weight:600;color:var(--accent-ink);margin-top:6px}
+  .rail-step.gift .rail-go{color:var(--navy)}
+  .form-card{border-color:var(--gift)}
+  .btn.ready{background:var(--gift);animation:pulseGift 1.6s ease-in-out infinite}
+  @keyframes pulseGift{0%{box-shadow:0 0 0 0 rgba(169,119,47,.5)}70%{box-shadow:0 0 0 14px rgba(169,119,47,0)}100%{box-shadow:0 0 0 0 rgba(169,119,47,0)}}
+  .examples{margin-top:22px}
+  .ex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
+  @media(max-width:820px){.ex-grid{grid-template-columns:1fr}}
+  .ex-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);display:flex;flex-direction:column}
+  .ex-prev{position:relative;height:188px;overflow:hidden;border-bottom:1px solid var(--line);background:var(--surface-2)}
+  .ex-prev iframe{width:166.6%;height:313px;border:0;transform:scale(.6);transform-origin:top left;pointer-events:none}
+  .ex-card:hover .ex-prev iframe{pointer-events:auto}
+  .ex-ind{position:absolute;top:8px;left:8px;background:rgba(34,58,94,.92);color:#fff;font-size:10px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px}
+  .ex-body{padding:14px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .ex-t{font-weight:700;font-size:14.5px;color:var(--ink)}
+  .ex-d{font-size:12.5px;color:var(--muted);line-height:1.42;flex:1}
+  .ex-go{font-size:12.5px;font-weight:700;color:var(--accent-ink);text-decoration:none;margin-top:2px}
+  .ex-go:hover{color:var(--terra)}
 
   /* Acciones del roadmap (descargar) */
   .roadmap-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
@@ -751,7 +789,7 @@ function render(){
   restartBtn.hidden = (state.step===0);
   var html='';
   if(state.step===0) html=viewIntro();
-  else if(state.step===1) html=viewTema();
+  else if(state.step===1) html=viewPregunta('tema');
   else if(state.step===2) html=viewPregunta('stack');
   else if(state.step===3) html=viewPregunta('nivelIA');
   else if(state.step===4) html=viewPregunta('nivelTema');
@@ -798,8 +836,8 @@ function recorrido(){
 function orbitNodes(){
   var pos=['p1','p2','p3','p4'];
   return TEMAS.map(function(t,i){
-    return '<button type="button" class="onode '+pos[i]+'" data-pick-tema="'+t.id+'">'+
-      '<span class="num">0'+(i+1)+'</span><span class="lbl">'+esc(cap(t.corto))+'</span></button>';
+    return '<div class="onode '+pos[i]+'" aria-hidden="true">'+
+      '<span class="num">0'+(i+1)+'</span><span class="lbl">'+esc(cap(t.corto))+'</span></div>';
   }).join('');
 }
 
@@ -815,22 +853,16 @@ function quotesBand(){
 }
 
 function viewIntro(){
-  var orbit='<div class="orbit" aria-hidden="true">'+
+  var orbit='<div class="orbit">'+
     '<span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>'+
-    '<span class="hub"><span class="k">Montblanc · 2026</span><span class="t">Ruta IA</span></span>'+
+    '<button type="button" class="hub hub-cta" data-go="1"><span class="k">Montblanc · 2026</span><span class="t">Comenzar</span><span class="hub-go" aria-hidden="true">→</span></button>'+
     orbitNodes()+
   '</div>';
   return '<section class="hero">'+
     '<div class="hero-copy">'+
       '<p class="eyebrow">Regalo de fin de año · Montblanc Consulting</p>'+
-      '<h1>Aprende IA,<br>a tu medida.</h1>'+
-      '<p class="lead">Recorre cuatro formas de poner la IA a trabajar para ti. No hay test ni respuesta correcta: respondes unas preguntas y armamos tu ruta, con un curso de cortesía para dar el primer paso.</p>'+
-      '<div class="ctx-chip"><span class="dot"></span> Edición ejecutiva · <b>un curso de regalo</b></div>'+
-      '<div class="hero-cta">'+
-        '<button type="button" class="btn lg" data-go="1">Comenzar <span aria-hidden="true">→</span></button>'+
-        '<button type="button" class="link-btn" id="randomBtn"><span aria-hidden="true">✦</span> Llévame a un tema al azar</button>'+
-      '</div>'+
-      recorrido()+
+      '<h1>Aprender más rápido que la competencia es la única ventaja sostenible.</h1>'+
+      '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, te armamos una <b>ruta de IA hecha a tu medida</b> y te damos un <b>curso de cortesía</b> para dar el primer paso. Responde unas preguntas y descúbrela — toca el círculo para comenzar.</p>'+
     '</div>'+
     '<div class="hero-art">'+orbit+'</div>'+
   '</section>'+
@@ -921,100 +953,75 @@ function viewResultado(){
   var fit=recomendacionStack(t.id, s.id);
   var bloqueFit = fit ? '<div class="note"><b>Sugerencia:</b> '+esc(fit)+'</div>' : '';
 
-  // 1) Ideas primero: qué automatizar / qué pedir
-  var ideasLi=(IDEAS[t.id]||[]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
-  var casos=CASOS[t.id]||[];
-  var bloqueCasos = casos.length ? (
-    '<div class="cases"><div class="cases-head"><span class="mb-badge">Hecho por Montblanc</span>'+
-      '<p class="cases-sub">Herramientas reales que ya construimos en esta línea:</p></div>'+
-      '<div class="cases-grid">'+casos.map(function(c){
-        return '<a class="case" href="'+esc(c.url)+'" target="_blank" rel="noopener"><span class="case-ind">'+esc(c.ind)+'</span>'+
-          '<span class="case-t">'+esc(c.t)+'</span>'+
-          '<span class="case-d">'+esc(c.d)+'</span>'+
-          '<span class="case-go">Ver demo <span aria-hidden="true">↗</span></span></a>';
-      }).join('')+'</div>'+
-      '<a class="cases-link" href="https://book-montblanc.vercel.app/#proyectos" target="_blank" rel="noopener">Ver todos los proyectos ↗</a></div>'
-  ) : '';
-  var bloqueIdeas='<div class="block"><div class="head"><span class="kicker">Primero · ideas</span></div>'+
-    '<h3>¿Qué podrías lograr?</h3>'+
-    '<p class="sub">Ejemplos concretos para '+esc(t.corto||'tu objetivo')+'. Elige uno y úsalo para completar el prompt de más abajo.</p>'+
-    '<ul class="ideas">'+ideasLi+'</ul>'+bloqueCasos+'</div>';
+  // Roadmap = ruta de cursos en horizontal (el regalo destacado en azul Montblanc)
+  var cr=cursoRecomendado();
+  var path=cursoPath(), ei=cursoEntry();
+  var railHtml=path.map(function(c,i){
+    var cls = i===ei?'rail-step gift':'rail-step dim';
+    var badge = i===ei?'Tu regalo' : (i<ei?'Base':'Siguiente');
+    return '<a class="'+cls+'" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+
+      '<span class="rail-top"><span class="rail-n">'+(i+1)+'</span><span class="rail-badge">'+badge+'</span></span>'+
+      '<span class="rail-nivel">'+esc(NIVEL_CURSO[i])+' · '+esc(c.costo)+'</span>'+
+      '<span class="rail-t">'+esc(c.t)+'</span>'+
+      '<span class="rail-meta">'+esc(c.prov)+'</span>'+
+      '<span class="rail-go">Ver curso ↗</span></a>';
+  }).join('');
+  var bloqueRail='<div class="block"><span class="kicker" style="color:var(--gift-ink)">El regalo de Montblanc</span>'+
+    '<h3>Tu roadmap de aprendizaje</h3>'+
+    '<p class="sub">Tus pasos, de izquierda a derecha. Te regalamos el curso destacado en <b style="color:var(--navy)">azul</b>, justo en el nivel donde comienzas; los demás quedan como referencia para seguir avanzando.</p>'+
+    '<div class="course-rail">'+railHtml+'</div>'+
+    '<p class="sub" style="margin-top:12px"><b>Por qué este regalo:</b> '+esc(cr.porque)+'</p></div>';
 
-  // Aviso solo para apps: datos en servidores de terceros + demo local
+  // Prompt (con aviso para apps)
   var avisoApp = t.id==='app'
     ? '<div class="note warn"><b>Antes de partir:</b> una app publicada en la nube guarda la información en servidores de terceros. Para practicar sin exponer datos, parte con una demo en un archivo HTML local (corre solo en tu computador) y usa ejemplos que no incluyan información sensible.</div>'
     : '';
-
-  // 2) Prompt después de las ideas
   var promptTxt = esc(t.prompt).replace(/\[([^\]]+)\]/g,'<span class="fill">[$1]</span>');
-  var bloquePrompt='<div class="block"><div class="head"><span class="kicker">Luego · tu prompt</span></div>'+
-    '<h3>Tu primer prompt, listo para usar</h3>'+
-    '<p class="sub">Cópialo, pégalo en '+esc(s.nombre)+' y reemplaza el texto entre corchetes por tu caso. Te devolverá un primer esquema sobre el que seguir trabajando.</p>'+
+  var bloquePrompt='<div class="block"><div class="head"><span class="kicker">Tu primer prompt</span></div>'+
+    '<h3>Listo para usar en '+esc(s.nombre)+'</h3>'+
+    '<p class="sub">Cópialo, pégalo y reemplaza el texto entre corchetes por tu caso. Te devolverá un primer esquema sobre el que seguir trabajando.</p>'+
     '<div class="prompt-card"><div class="txt" id="promptTxt">'+promptTxt+'</div></div>'+
     avisoApp+
     '<button type="button" class="copy" id="copyBtn">'+
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'+
       '<span>Copiar prompt</span></button></div>';
 
-  // 3) Plan / timeline con punto de entrada
-  var start=entryIndex();
-  var stages=t.etapas.map(function(e,i){
-    var cls = i<start?'stage done':(i===start?'stage here':'stage');
-    var badge='';
-    if(i===start) badge='<span class="badge">Empieza aquí</span>';
-    else if(i<start) badge='<span class="badge soft">Ya lo manejas</span>';
-    return '<div class="'+cls+'"><span class="dot">'+(i+1)+'</span>'+
-      '<span><span class="st-ttl">'+esc(e.t)+badge+'</span>'+
-      '<span class="st-d">'+esc(e.d)+'</span>'+
-      '<span class="time">⏱ '+esc(e.h)+'</span></span></div>';
-  }).join('');
-  var nivelNota = (usaTema&&ntm)
-    ? 'Como en IA tienes nivel <b>'+esc(nia.nombre.toLowerCase())+'</b> y en '+esc(t.corto||'el tema')+' nivel <b>'+esc(ntm.nombre.toLowerCase())+'</b>, comienzas en la etapa '+(start+1)+'.'
-    : 'Según tu nivel de IA (<b>'+esc(nia.nombre.toLowerCase())+'</b>), comienzas en la etapa '+(start+1)+'.';
-  var bloquePlan='<div class="block"><div class="head"><span class="kicker">Tu plan</span></div>'+
-    '<h3>El curso es tu primer paso</h3>'+
-    '<p class="sub">Un camino corto y claro. '+nivelNota+'</p>'+
-    '<div class="timeline">'+stages+'</div>'+
-    '<div class="time-note">⏱ '+esc(t.resumen)+'</div></div>';
-
-  // 4) Curso de cortesía + ruta de cursos para seguir avanzando + registro
-  var cr=cursoRecomendado();
-  var path=cursoPath(), ei=cursoEntry();
-  var pathHtml=path.map(function(c,i){
-    var st = i<ei?'done':(i===ei?'gift':'');
-    var badge = i===ei?'<span class="cstep-badge gift">Tu regalo</span>'
-              : i<ei?'<span class="cstep-badge">Base</span>'
-              : '<span class="cstep-badge">Siguiente</span>';
-    return '<a class="cstep '+st+'" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+
-      '<span class="cstep-dot">'+(i+1)+'</span>'+
-      '<span style="flex:1"><span class="cstep-top">'+esc(NIVEL_CURSO[i])+' · '+esc(c.costo)+' '+badge+'</span>'+
-      '<span class="cstep-t">'+esc(c.t)+'</span>'+
-      '<span class="cstep-prov">'+esc(c.prov)+' · Ver curso ↗</span></span></a>';
-  }).join('');
-  var bloqueCurso='<div class="block" style="border-color:var(--gift)">'+
-    '<span class="kicker" style="color:var(--gift-ink)">El regalo de Montblanc</span>'+
-    '<h3>Tu curso de cortesía y tu ruta de aprendizaje</h3>'+
-    '<p class="sub">Según tu nivel, te regalamos el curso marcado como <b>tu regalo</b>, y te dejamos la ruta completa de cursos para seguir avanzando a tu ritmo.<br><b>Por qué este:</b> '+esc(cr.porque)+'</p>'+
-    '<div class="course-path">'+pathHtml+'</div>'+
+  // Formulario a la derecha (solo nombre y correo) + botón que brilla al completar
+  var saberMas='<div class="more"><h4>¿Conversamos?</h4>'+
+    '<p>Si quieres llevar esta ruta a tu equipo o explorar una herramienta a tu medida, en Montblanc te acompañamos.</p></div>';
+  var bloqueForm='<aside class="road-side"><div class="block form-card">'+
+    '<span class="kicker" style="color:var(--gift-ink)">Reclama tu regalo</span>'+
+    '<h3>Obtén tu curso de cortesía</h3>'+
+    '<p class="sub">Déjanos tu nombre y correo; coordinamos la entrega a tu correo.</p>'+
     '<form class="form" id="claimForm" novalidate>'+
       '<div class="field"><label for="f-nombre">Nombre y apellido</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre"></div>'+
       '<div class="field"><label for="f-email">Correo</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="tucorreo@empresa.com"></div>'+
-      '<div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" placeholder="Tu empresa"></div>'+
       '<div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>No completar este campo<input id="f-web" name="website" tabindex="-1" autocomplete="off"></label></div>'+
       '<div id="formMsg"></div>'+
-      '<button class="btn full" id="submitBtn" type="submit">Solicitar mi curso</button>'+
+      '<button class="btn full" id="submitBtn" type="submit">Obtener mi regalo</button>'+
       '<p class="consent">Usaremos tus datos solo para coordinar la entrega de tu curso. Montblanc Consulting.</p>'+
-    '</form></div>';
+    '</form></div>'+saberMas+'</aside>';
 
-  // 5) Descargar + ¿quieres saber más?
+  // Ejemplos reales de Montblanc con preview interactivo + link
+  var casos=CASOS[t.id]||[];
+  var bloqueEjemplos = casos.length ? (
+    '<div class="examples"><div class="head"><span class="kicker">Hecho por Montblanc</span></div>'+
+    '<h3>Ejemplos reales de lo que podrías lograr</h3>'+
+    '<p class="sub">Herramientas que ya construimos en esta línea. Pasa el mouse para interactuar con el preview, o abre la demo completa.</p>'+
+    '<div class="ex-grid">'+casos.map(function(c){
+      return '<div class="ex-card">'+
+        '<div class="ex-prev"><iframe src="'+esc(c.url)+'" loading="lazy" title="'+esc(c.t)+'"></iframe><span class="ex-ind">'+esc(c.ind)+'</span></div>'+
+        '<div class="ex-body"><span class="ex-t">'+esc(c.t)+'</span><span class="ex-d">'+esc(c.d)+'</span>'+
+        '<a class="ex-go" href="'+esc(c.url)+'" target="_blank" rel="noopener">Ver demo completa ↗</a></div></div>';
+    }).join('')+'</div>'+
+    '<a class="cases-link" href="https://book-montblanc.vercel.app/#proyectos" target="_blank" rel="noopener">Ver todos los proyectos ↗</a></div>'
+  ) : '';
+
   var acciones='<div class="roadmap-actions">'+
     '<button type="button" class="copy" id="downloadBtn">'+
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></svg>'+
       '<span>Descargar roadmap</span></button></div>';
-  var saberMas='<div class="more"><h4>¿Conversamos?</h4>'+
-    '<p>Si quieres llevar esta ruta a tu equipo o explorar una herramienta a tu medida, en Montblanc te acompañamos.</p></div>';
 
-  // Cierre editorial
   var cierre='<div class="closing">'+
     '<blockquote class="cq">“Read 500 pages like this every day. That’s how knowledge works. It builds up, like compound interest. All of you can do it, but I guarantee not many of you will do it.”'+
       '<span class="by">Warren Buffett</span></blockquote>'+
@@ -1027,16 +1034,17 @@ function viewResultado(){
       '<div class="road-head-main">'+
         '<p class="eyebrow">Tu ruta personalizada</p>'+
         '<h2 class="road-title">Esta es tu ruta.</h2>'+
-        '<p class="road-sub">Un camino corto, armado con tus respuestas. Toca cualquier dato para ajustarlo.</p>'+
+        '<p class="road-sub">Un recap de lo que elegiste. Toca cualquier dato para ajustarlo.</p>'+
         chips+
       '</div>'+
       '<div class="road-head-side">'+acciones+'</div>'+
     '</header>'+
     bloqueFit+
     '<div class="road-grid">'+
-      '<div class="road-main">'+bloqueIdeas+bloquePrompt+bloquePlan+'</div>'+
-      '<aside class="road-side">'+bloqueCurso+saberMas+'</aside>'+
+      '<div class="road-main">'+bloqueRail+bloquePrompt+'</div>'+
+      bloqueForm+
     '</div>'+
+    bloqueEjemplos+
     cierre+
   '</div>';
 }
@@ -1151,11 +1159,10 @@ function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 
 async function enviar(form){
   var msg=document.getElementById('formMsg');
-  var nombre=form.nombre.value.trim(), email=form.email.value.trim(), empresa=form.empresa.value.trim();
-  ['f-nombre','f-email','f-empresa'].forEach(function(id){var el=document.getElementById(id); if(el) el.style.borderColor='';});
+  var nombre=form.nombre.value.trim(), email=form.email.value.trim(), empresa='';
+  ['f-nombre','f-email'].forEach(function(id){var el=document.getElementById(id); if(el) el.style.borderColor='';});
   function bad(id,txt){ msg.innerHTML='<div class="msg err">'+txt+'</div>'; var el=document.getElementById(id); if(el){ el.style.borderColor='var(--terra)'; el.focus(); } }
   if(!nombre){ bad('f-nombre','Escribe tu nombre y apellido.'); return; }
-  if(!empresa){ bad('f-empresa','Indica tu empresa.'); return; }
   if(!validEmail(email)){ bad('f-email','El correo no es válido: debe incluir una @ y un dominio, por ejemplo nombre@empresa.cl'); return; }
 
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), cr=cursoRecomendado();
@@ -1255,7 +1262,12 @@ function bind(){
   });
   // formulario
   var form=document.getElementById('claimForm');
-  if(form) form.addEventListener('submit', function(ev){ ev.preventDefault(); enviar(form); });
+  if(form){
+    form.addEventListener('submit', function(ev){ ev.preventDefault(); enviar(form); });
+    var sbtn=document.getElementById('submitBtn');
+    function chkReady(){ var ok=form.nombre.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()); if(sbtn) sbtn.classList.toggle('ready', !!ok); }
+    form.nombre.addEventListener('input', chkReady); form.email.addEventListener('input', chkReady); chkReady();
+  }
 }
 
 function goto(step){
