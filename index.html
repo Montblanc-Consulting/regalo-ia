@@ -1152,8 +1152,11 @@ function validEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
 async function enviar(form){
   var msg=document.getElementById('formMsg');
   var nombre=form.nombre.value.trim(), email=form.email.value.trim(), empresa=form.empresa.value.trim();
-  if(!nombre||!empresa){ msg.innerHTML='<div class="msg err">Completa tu nombre y empresa.</div>'; return; }
-  if(!validEmail(email)){ msg.innerHTML='<div class="msg err">Revisa tu correo: no parece válido.</div>'; return; }
+  ['f-nombre','f-email','f-empresa'].forEach(function(id){var el=document.getElementById(id); if(el) el.style.borderColor='';});
+  function bad(id,txt){ msg.innerHTML='<div class="msg err">'+txt+'</div>'; var el=document.getElementById(id); if(el){ el.style.borderColor='var(--terra)'; el.focus(); } }
+  if(!nombre){ bad('f-nombre','Escribe tu nombre y apellido.'); return; }
+  if(!empresa){ bad('f-empresa','Indica tu empresa.'); return; }
+  if(!validEmail(email)){ bad('f-email','El correo no es válido: debe incluir una @ y un dominio, por ejemplo nombre@empresa.cl'); return; }
 
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), cr=cursoRecomendado();
   var nivelTemaTxt=(temaUsaNivelTema()&&ntm)?ntm.nombre:'—';
