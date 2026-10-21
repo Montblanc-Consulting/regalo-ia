@@ -593,17 +593,16 @@ var TEMAS = [
 
 var STACKS = [
   {id:'claude', nombre:'Claude', prov:'Anthropic', desc:'Razonamiento cuidadoso, textos largos y trabajo con documentos.'},
-  {id:'codex', nombre:'Codex', prov:'OpenAI', desc:'Agente de programación: ideal si tu foco es construir y automatizar con código.'},
   {id:'gemini', nombre:'Gemini', prov:'Google', desc:'Integrado al ecosistema Google (Workspace, búsqueda, multimodal).'},
-  {id:'chatgpt', nombre:'ChatGPT', prov:'OpenAI', desc:'Versátil y popular: buen punto de entrada para casi cualquier tarea.'},
+  {id:'chatgpt', nombre:'ChatGPT', prov:'OpenAI', desc:'Versátil y popular: desde redactar, investigar e idear hasta construir y automatizar con código (incluye Codex).'},
   {id:'perplexity', nombre:'Perplexity', prov:'Perplexity', desc:'Buscador con IA: investigación con fuentes citadas en tiempo real.'}
 ];
 
-/* Qué herramientas calzan con cada tema (Perplexity solo investiga; Codex es para construir con código). */
+/* Qué herramientas calzan con cada tema (Perplexity solo investiga). */
 var STACK_FIT = {
-  sistematizar:['claude','codex','gemini','chatgpt'],
+  sistematizar:['claude','gemini','chatgpt'],
   investigar:['claude','gemini','chatgpt','perplexity'],
-  app:['claude','codex','gemini','chatgpt'],
+  app:['claude','gemini','chatgpt'],
   cyber:['claude','gemini','chatgpt']
 };
 
@@ -688,9 +687,7 @@ function entryIndex(){
 function recomendacionStack(temaId, stackId){
   var corto=(TEMAS.filter(function(t){return t.id===temaId})[0]||{}).corto||'esto';
   if(stackId==='perplexity' && temaId!=='investigar')
-    return 'Perplexity destaca para investigar con fuentes citadas, pero no para '+corto+'. Conviene sumar un asistente como Claude o ChatGPT (o Codex si vas a programar) y reservar Perplexity para la investigación.';
-  if(stackId==='codex' && (temaId==='investigar' || temaId==='cyber'))
-    return 'Codex está pensado para construir con código. Para '+corto+' te resultará más útil un asistente conversacional como Claude, ChatGPT o Gemini.';
+    return 'Perplexity destaca para investigar con fuentes citadas, pero no para '+corto+'. Conviene sumar un asistente como Claude, ChatGPT o Gemini y reservar Perplexity para la investigación.';
   return '';
 }
 
