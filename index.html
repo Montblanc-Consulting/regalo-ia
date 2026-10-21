@@ -256,6 +256,9 @@
   .road-title{font-family:var(--font-display);font-weight:500;font-size:clamp(28px,4vw,46px);
     line-height:1.03;letter-spacing:-.01em;margin:.1em 0 .22em;color:var(--ink)}
   .road-sub{color:var(--muted);font-size:14.5px;max-width:52ch;margin:0 0 10px}
+  .road-recap{color:var(--ink);font-size:16px;line-height:1.6;max-width:62ch;margin:6px 0 6px}
+  .road-recap b{color:var(--navy);font-weight:600}
+  .road-recap-edit{color:var(--muted);font-size:13px;margin:0 0 4px}
   .road-head-side{flex:none}
   .road-grid{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(0,1fr);gap:22px;align-items:start;margin-top:8px}
   .road-main{min-width:0}
@@ -734,33 +737,63 @@ var CURSO_FUND = {
   chatgpt:   {t:'OpenAI Academy', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com'},
   codex:     {t:'OpenAI Academy · Build with AI', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com'},
   gemini:    {t:'Gemini: Beginner to Advanced', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/gemini-generative-ai-beginner-to-advanced-masterclass/'},
-  perplexity:{t:'Intro a la Investigación con Perplexity', prov:'Codecademy', costo:'Gratis', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity'}
+  perplexity:{t:'Perplexity 101 — Primeros pasos', prov:'Perplexity', costo:'Gratis', url:'https://www.perplexity.ai/hub'}
 };
-var CURSO_PATH = {
-  sistematizar:[
-    {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/'},
-    {t:'Multi-AI Agent Systems (crewAI)', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/'}
-  ],
-  investigar:[
-    {t:'Intro a la Investigación con Perplexity', prov:'Codecademy', costo:'Gratis', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity'},
-    {t:'Mastering Perplexity AI', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/mastering-perplexity-ai-smarter-research-better-results/'}
-  ],
-  app:[
-    {t:'AI Foundations: construir y publicar apps', prov:'Replit Learn', costo:'Gratis', url:'https://learn.replit.com/'},
-    {t:'Vibe Coding for Everyone', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/vibe-coding-for-beginners-ai-programming-for-non-developers/'}
-  ],
-  cyber:[
-    {t:'AI Governance Foundation', prov:'SafeShield', costo:'Gratis', url:'https://www.safeshield.cloud/free-training-introduction-to-ai-governance'},
-    {t:'Master AI Governance: NIST & ISO 42001', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/master-ai-governance-nist-ai-rmf-iso-42001/'}
-  ]
+/* Aplicado + Avanzado por tema. Afinados por herramienta: NUNCA se recomienda
+   una IA distinta a la que eligió el usuario. _def = versión neutral (sirve con
+   cualquier herramienta); las claves por herramienta sobreescriben cuando existe
+   un curso real mejor calzado a esa IA. La dificultad escala Aplicado → Avanzado. */
+var CURSO_TEMA = {
+  sistematizar:{
+    _def:[
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/'},
+      {t:'Multi-AI Agent Systems (crewAI)', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/'}
+    ]
+  },
+  investigar:{
+    _def:[
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills'}
+    ],
+    claude:[
+      {t:'AI Fluency: Framework & Foundations', prov:'Anthropic', costo:'Gratis', url:'https://anthropic.skilljar.com/ai-fluency-framework-foundations'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills'}
+    ],
+    gemini:[
+      {t:'Google AI for Research and Insights', prov:'Google · Coursera', costo:'Gratis', url:'https://www.coursera.org/learn/google-ai-for-research-and-insights'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills'}
+    ],
+    chatgpt:[
+      {t:'OpenAI Academy: Applied AI Foundations', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com'},
+      {t:'ChatGPT Pro: OpenAI Deep Research', prov:'Pluralsight', costo:'Pagado', url:'https://www.pluralsight.com/courses/chatgpt-pro-openai-deep-research'}
+    ],
+    perplexity:[
+      {t:'Intro a la Investigación con Perplexity', prov:'Codecademy', costo:'Gratis', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity'},
+      {t:'Mastering Perplexity AI', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/mastering-perplexity-ai-smarter-research-better-results/'}
+    ]
+  },
+  app:{
+    _def:[
+      {t:'AI Foundations: construir y publicar apps', prov:'Replit Learn', costo:'Gratis', url:'https://learn.replit.com/'},
+      {t:'Vibe Coding for Everyone', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/vibe-coding-for-beginners-ai-programming-for-non-developers/'}
+    ]
+  },
+  cyber:{
+    _def:[
+      {t:'AI Governance Foundation', prov:'SafeShield', costo:'Gratis', url:'https://www.safeshield.cloud/free-training-introduction-to-ai-governance'},
+      {t:'Master AI Governance: NIST & ISO 42001', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/master-ai-governance-nist-ai-rmf-iso-42001/'}
+    ]
+  }
 };
 var NIVEL_CURSO = ['Fundamentos','Aplicado','Avanzado'];
 
-/* Ruta de 3 cursos (Fundamentos + 2 del tema) y el índice de entrada (regalo). */
+/* Ruta de 3 cursos (Fundamentos según herramienta + Aplicado + Avanzado del tema,
+   calzados a la herramienta) y el índice de entrada (regalo). */
 function cursoPath(){
   var s=stack(), t=tema();
   var fund = CURSO_FUND[s?s.id:'claude'] || CURSO_FUND.claude;
-  var rest = CURSO_PATH[t?t.id:'sistematizar'] || [];
+  var bank = CURSO_TEMA[t?t.id:'sistematizar'] || {};
+  var rest = (s && bank[s.id]) || bank._def || [];
   return [fund].concat(rest);
 }
 function cursoEntry(){ var e=entryIndex(); return e>2?2:e; } // 0 Fundamentos, 1 Aplicado, 2 Avanzado
@@ -973,11 +1006,14 @@ function viewPregunta(kind){
 
 function viewResultado(){
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), usaTema=temaUsaNivelTema();
-  // chips editables (en Investigación no mostramos el nivel del tema)
-  var chips='<div class="chips">'+
-    chip('Objetivo', t.titulo, 1)+ chip('Herramienta', s.nombre, 2)+
-    chip('Nivel IA', nia.nombre, 3)+
-    (usaTema&&ntm?chip('Nivel '+(t.corto||'tema'), ntm.nombre, 4):'')+'</div>';
+  var crRecap=cursoRecomendado();
+  var nivelLabel=(usaTema&&ntm?ntm.nombre:nia.nombre).toLowerCase();
+  // Recap en prosa: "dado que escogiste X, te regalamos Y" (sin pastillas)
+  var recap='<p class="road-recap">Como tu foco es <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b> '+
+    'y hoy partes de un nivel <b>'+esc(nivelLabel)+'</b>, tu regalo es <b>'+esc(crRecap.titulo)+'</b> '+
+    '('+esc(crRecap.costo)+') — el curso de nivel <b>'+esc(NIVEL_CURSO[crRecap.idx])+'</b> donde arranca tu ruta. '+
+    'Los demás quedan como referencia para seguir avanzando.</p>'+
+    '<p class="road-recap-edit">¿Quieres cambiar una respuesta? Toca los números de arriba.</p>';
   var fit=recomendacionStack(t.id, s.id);
   var bloqueFit = fit ? '<div class="note"><b>Sugerencia:</b> '+esc(fit)+'</div>' : '';
 
@@ -1048,8 +1084,7 @@ function viewResultado(){
       '<div class="road-head-main">'+
         '<p class="eyebrow">Tu ruta personalizada</p>'+
         '<h2 class="road-title">Esta es tu ruta.</h2>'+
-        '<p class="road-sub">Un recap de lo que elegiste. Toca cualquier dato para ajustarlo.</p>'+
-        chips+
+        recap+
       '</div>'+
       '<div class="road-head-side">'+acciones+'</div>'+
     '</header>'+
