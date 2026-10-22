@@ -63,6 +63,7 @@
   .plabel{font-size:10.5px;letter-spacing:.01em;color:var(--muted);white-space:nowrap}
   .pstep.cur .plabel{color:var(--ink);font-weight:600}
   .pstep.goal .plabel{color:var(--gift-ink);font-weight:600}
+  .pval{margin-top:1px;font-size:11px;font-weight:600;color:var(--accent-ink);white-space:nowrap}
   .pline{flex:1;min-width:12px;height:2px;background:var(--line);margin:13px 2px 0}
   .pline.on{background:var(--accent)}
 
@@ -185,6 +186,7 @@
   .stepper.on-dark .plabel{color:rgba(255,255,255,.6)}
   .stepper.on-dark .pstep.cur .plabel{color:#fff}
   .stepper.on-dark .pstep.goal .plabel{color:#e6c688}
+  .stepper.on-dark .pval{color:rgba(255,255,255,.82)}
   .stepper.on-dark .pline{background:var(--navy-line)} .stepper.on-dark .pline.on{background:rgba(255,255,255,.75)}
 
   /* Banda de citas de apertura */
@@ -857,11 +859,22 @@ function stepper(cur, dark){
     var last=i===seq.length-1;
     var st=i<ci?'done':(i===ci?'cur':'todo');
     var inner = last?flag:(i<ci?check:(i+1));
+    var val=pasoElegido(s.k);
     out+='<span class="pstep '+st+(last?' goal':'')+'" data-go="'+(i+1)+'" role="button" tabindex="0"><span class="pnode">'+inner+'</span>'+
-      '<span class="plabel">'+s.l+'</span></span>';
+      '<span class="plabel">'+s.l+'</span>'+
+      (val?'<span class="pval">'+esc(val)+'</span>':'')+'</span>';
     if(!last) out+='<span class="pline'+(i<ci?' on':'')+'"></span>';
   });
   return '<div class="stepper'+(dark?' on-dark':'')+'">'+out+'</div>';
+}
+
+/* Valor que el usuario eligió en cada paso (para mostrarlo pequeño bajo el rótulo). */
+function pasoElegido(k){
+  if(k==='tema')      return state.tema && tema() ? cap(tema().corto||tema().titulo) : '';
+  if(k==='stack')     return state.stack && stack() ? stack().nombre : '';
+  if(k==='nivelIA')   return state.nivelIA && nivelIA() ? nivelIA().nombre : '';
+  if(k==='nivelTema') return state.nivelTema && nivelTema() ? nivelTema().nombre : '';
+  return '';
 }
 
 function cap(s){return s? s.charAt(0).toUpperCase()+s.slice(1) : s;}
