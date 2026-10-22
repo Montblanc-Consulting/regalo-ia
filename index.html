@@ -803,7 +803,7 @@ function cursoRecomendado(){
   var porque = i===0
     ? 'Es el punto de partida de tu ruta: te da las bases para trabajar con '+ (stack()?stack().nombre:'IA') +' con confianza.'
     : 'Como ya manejas lo básico, partimos directo en este y te dejamos la ruta para seguir avanzando.';
-  return {titulo:c.t, prov:c.prov, url:c.url, costo:c.costo, desc:'Curso de cortesía — '+c.costo, porque:porque, idx:i};
+  return {titulo:c.t, prov:c.prov, url:c.url, costo:c.costo, desc:'Curso de cortesía', porque:porque, idx:i};
 }
 
 function giftPool(temaId, stackId){
@@ -1022,7 +1022,7 @@ function viewResultado(){
   // Recap en prosa: "dado que escogiste X, te regalamos Y" (sin pastillas)
   var recap='<p class="road-recap">Como tu foco es <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b> '+
     'y hoy partes de un nivel <b>'+esc(nivelLabel)+'</b>, tu regalo es <b>'+esc(crRecap.titulo)+'</b> '+
-    '('+esc(crRecap.costo)+') — el curso de nivel <b>'+esc(NIVEL_CURSO[crRecap.idx])+'</b> donde arranca tu ruta. '+
+    '— el curso de nivel <b>'+esc(NIVEL_CURSO[crRecap.idx])+'</b> donde arranca tu ruta. '+
     'Los demás quedan como referencia para seguir avanzando.</p>'+
     '<p class="road-recap-edit">¿Quieres cambiar una respuesta? Toca los números de arriba.</p>';
   var fit=recomendacionStack(t.id, s.id);
@@ -1036,7 +1036,7 @@ function viewResultado(){
     var badge = i===ei?'Tu regalo' : (i<ei?'Base':'Siguiente');
     return '<a class="'+cls+'" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+
       '<span class="rail-top"><span class="rail-n">'+(i+1)+'</span><span class="rail-badge">'+badge+'</span></span>'+
-      '<span class="rail-nivel">'+esc(NIVEL_CURSO[i])+' · '+esc(c.costo)+'</span>'+
+      '<span class="rail-nivel">'+esc(NIVEL_CURSO[i])+'</span>'+
       '<span class="rail-t">'+esc(c.t)+'</span>'+
       '<span class="rail-meta">'+esc(c.prov)+'</span>'+
       '<span class="rail-go">Ver curso ↗</span></a>';
@@ -1135,7 +1135,7 @@ async function descargarRoadmap(){
   var cursosDoc=cpath.map(function(c,i){
     var gift=i===cei, mark=gift?'Tu regalo':(i<cei?'Base':'Siguiente');
     return '<div class="course'+(gift?' gift':'')+'"><span class="cn">'+(i+1)+'</span>'+
-      '<div><span class="clabel">'+esc(NIVEL_CURSO[i])+' · '+esc(c.costo)+' · '+mark+'</span>'+
+      '<div><span class="clabel">'+esc(NIVEL_CURSO[i])+' · '+mark+'</span>'+
       '<b>'+esc(c.t)+'</b><span class="cmeta">'+esc(c.prov)+' — '+esc(c.url)+'</span></div></div>';
   }).join('');
   var etapasHtml=t.etapas.map(function(e,i){
