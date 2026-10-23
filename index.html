@@ -406,6 +406,48 @@
   .rail-step.dim .rail-why{color:var(--muted)}
   .rail-go{font-size:12.5px;font-weight:600;color:var(--accent-ink);margin-top:auto;padding-top:8px}
   .rail-step.gift .rail-go{color:var(--navy)}
+  /* Roadmap por etapas (lo que vas a poder hacer) */
+  .etapas{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px}
+  .etapa{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+  .etapa.done{opacity:.72;background:var(--surface-2)}
+  .etapa.here{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.10),rgba(40,66,103,.03));box-shadow:0 10px 24px -18px rgba(34,58,94,.5)}
+  .et-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
+  .etapa.done .et-n{background:var(--accent-soft);color:var(--accent-ink)}
+  .etapa.here .et-n{background:var(--navy);color:#fff}
+  .et-body{display:flex;flex-direction:column;gap:2px}
+  .et-body>b{font-size:14.5px;color:var(--ink)}
+  .et-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:6px;padding:2px 7px;margin:3px 0}
+  .et-tag.base{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .et-d{font-size:13px;color:var(--muted);line-height:1.45}
+  .et-h{font-size:12px;color:var(--accent-ink);font-weight:600;margin-top:2px}
+  /* Elegir regalo (3 opciones) */
+  .gopts{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+  .gopt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface);transition:border-color .12s,background .12s}
+  .gopt:hover{border-color:var(--accent)}
+  .gopt input{position:absolute;opacity:0;width:0;height:0}
+  .gopt.on{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.09),rgba(40,66,103,.02))}
+  .go-ic{flex:none;font-size:18px;line-height:1.2}
+  .go-tx{display:flex;flex-direction:column;gap:1px;flex:1}
+  .go-tx b{font-size:13.5px;color:var(--ink)}
+  .go-tx small{font-size:12px;color:var(--muted);line-height:1.4}
+  .go-mark{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);margin-top:2px;position:relative}
+  .gopt.on .go-mark{border-color:var(--navy)}
+  .gopt.on .go-mark::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--navy)}
+  .agenda-alt{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+  .agenda-alt a{color:var(--accent-ink);font-weight:600;text-decoration:none}
+  .agenda-alt a:hover{text-decoration:underline}
+  /* ¿Y después? */
+  .siguiente{margin-top:16px}
+  .sig-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+  @media(max-width:620px){.sig-grid{grid-template-columns:1fr}}
+  .sig-card{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:inherit;background:var(--surface);transition:transform .12s,box-shadow .12s}
+  .sig-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px -16px var(--shadow)}
+  .sig-ic{font-size:20px;line-height:1.1}
+  .sig-et{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:4px}
+  .sig-t{font-size:14.5px;line-height:1.2;color:var(--ink)}
+  .sig-prov{font-size:12px;color:var(--muted)}
+  .sig-d{font-size:12.5px;line-height:1.4;color:var(--ink);margin-top:5px}
+  .sig-go{font-size:12.5px;font-weight:600;color:var(--accent-ink);margin-top:auto;padding-top:8px}
   .form-card{border-color:var(--gift)}
   .btn.ready{background:var(--gift);animation:pulseGift 1.6s ease-in-out infinite}
   @keyframes pulseGift{0%{box-shadow:0 0 0 0 rgba(169,119,47,.5)}70%{box-shadow:0 0 0 14px rgba(169,119,47,0)}100%{box-shadow:0 0 0 0 rgba(169,119,47,0)}}
@@ -786,6 +828,20 @@ var CURSO_TEMA = {
     ]
   }
 };
+/* "¿Y después?" — recursos accesibles y verificados para seguir (nivel ejecutivo). */
+var SIGUIENTE = [
+  {ic:'🎓', et:'Curso', t:'AI for Business', prov:'Wharton · Coursera', url:'https://www.coursera.org/specializations/ai-for-business-wharton', d:'Para líderes que deciden cómo aplicar IA en el negocio, sin programar. Se puede auditar gratis.'},
+  {ic:'📖', et:'Libro', t:'Co-Intelligence', prov:'Ethan Mollick', url:'https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/', d:'El libro de referencia para trabajar con IA como copiloto. También en español.'},
+  {ic:'📬', et:'Al día', t:'One Useful Thing', prov:'Newsletter de Ethan Mollick', url:'https://www.oneusefulthing.org/', d:'Lo que de verdad sirve para trabajar con IA, en lenguaje ejecutivo. Gratis.'}
+];
+var SIGUIENTE_CYBER = [
+  {ic:'🧭', et:'Marco', t:'NIST AI Risk Management Framework', prov:'NIST', url:'https://www.nist.gov/itl/ai-risk-management-framework', d:'El marco de referencia (gratis) para gestionar el riesgo de IA en la organización.'},
+  {ic:'📬', et:'Al día', t:'IAPP AI Governance Center', prov:'IAPP', url:'https://iapp.org/about/ai-governance-center/', d:'Newsletter semanal para seguir la regulación de IA (UE, EE.UU.). Gratis.'}
+];
+function siguienteRecursos(){
+  if(state.tema==='cyber') return [SIGUIENTE[0], SIGUIENTE_CYBER[0], SIGUIENTE_CYBER[1]];
+  return SIGUIENTE;
+}
 var NIVEL_CURSO = ['Fundamentos','Aplicado','Avanzado'];
 
 /* Ruta de 3 cursos (Fundamentos según herramienta + Aplicado + Avanzado del tema,
@@ -1020,34 +1076,30 @@ function viewResultado(){
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), usaTema=temaUsaNivelTema();
   var crRecap=cursoRecomendado();
   var nivelLabel=(usaTema&&ntm?ntm.nombre:nia.nombre).toLowerCase();
-  // Recap en prosa: "dado que escogiste X, te regalamos Y" (sin pastillas)
-  var recap='<p class="road-recap">Como tu foco es <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b> '+
-    'y hoy partes de un nivel <b>'+esc(nivelLabel)+'</b>, tu regalo es <b>'+esc(crRecap.titulo)+'</b> '+
-    '— el curso de nivel <b>'+esc(NIVEL_CURSO[crRecap.idx])+'</b> donde arranca tu ruta. '+
-    'Los demás quedan como referencia para seguir avanzando.</p>'+
+  // Recap en prosa (el regalo ahora es una elección, no un curso único)
+  var recap='<p class="road-recap">Esta es tu ruta para <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b>, '+
+    'partiendo de un nivel <b>'+esc(nivelLabel)+'</b>. Abajo verás, paso a paso, <b>lo que vas a poder hacer</b> y el <b>primer prompt</b> para arrancar hoy. '+
+    'Y eliges cómo quieres que te acompañemos: con un curso, con una licencia de Claude para probar, o con una hora de un consultor.</p>'+
     '<p class="road-recap-edit">¿Quieres cambiar una respuesta? Toca los números de arriba.</p>';
   var fit=recomendacionStack(t.id, s.id);
   var bloqueFit = fit ? '<div class="note"><b>Sugerencia:</b> '+esc(fit)+'</div>' : '';
 
-  // Roadmap = ruta de cursos en horizontal (el regalo destacado en azul Montblanc)
+  // Roadmap POR ETAPAS: lo que la persona podrá ir haciendo (de lo simple a lo avanzado).
   var cr=cursoRecomendado();
-  var path=cursoPath(), ei=cursoEntry();
-  var railHtml=path.map(function(c,i){
-    var cls = i===ei?'rail-step gift':'rail-step dim';
-    var badge = i===ei?'Tu regalo' : (i<ei?'Base':'Siguiente');
-    return '<a class="'+cls+'" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+
-      '<span class="rail-top"><span class="rail-n">'+(i+1)+'</span><span class="rail-badge">'+badge+'</span></span>'+
-      '<span class="rail-nivel">'+esc(NIVEL_CURSO[i])+'</span>'+
-      '<span class="rail-t">'+esc(c.t)+'</span>'+
-      '<span class="rail-meta">'+esc(c.prov)+'</span>'+
-      (c.d?'<span class="rail-why">'+esc(c.d)+'</span>':'')+
-      '<span class="rail-go">Ver curso ↗</span></a>';
+  var start=entryIndex();
+  var etapasHtml=(t.etapas||[]).map(function(e,i){
+    var cls=i<start?'etapa done':(i===start?'etapa here':'etapa');
+    var tag=i===start?'<span class="et-tag">Empiezas aquí</span>':(i<start?'<span class="et-tag base">Ya lo manejas</span>':'');
+    return '<div class="'+cls+'"><span class="et-n">'+(i+1)+'</span>'+
+      '<div class="et-body"><b>'+esc(e.t)+'</b>'+tag+
+      '<span class="et-d">'+esc(e.d)+'</span>'+
+      (e.h?'<span class="et-h">⏱ '+esc(e.h)+'</span>':'')+'</div></div>';
   }).join('');
-  var bloqueRail='<div class="block"><span class="kicker" style="color:var(--gift-ink)">El regalo de Montblanc</span>'+
-    '<h3>Tu roadmap de aprendizaje</h3>'+
-    '<p class="sub">Tus pasos, de izquierda a derecha. Te regalamos el curso destacado en <b style="color:var(--navy)">azul</b>, justo en el nivel donde comienzas; los demás quedan como referencia para seguir avanzando.</p>'+
-    '<div class="course-rail">'+railHtml+'</div>'+
-    '<p class="sub" style="margin-top:12px"><b>Por qué este regalo:</b> '+esc(cr.porque)+'</p></div>';
+  var bloqueEtapas='<div class="block"><span class="kicker">Tu roadmap, paso a paso</span>'+
+    '<h3>Lo que vas a poder hacer</h3>'+
+    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. Lo valioso es entender qué se puede lograr y saber qué pedir.</p>'+
+    '<div class="etapas">'+etapasHtml+'</div>'+
+    (t.resumen?'<p class="sub" style="margin-top:12px"><b>⏱ </b>'+esc(t.resumen)+'</p>':'')+'</div>';
 
   // Prompt (con aviso para apps)
   var avisoApp = t.id==='app'
@@ -1063,21 +1115,47 @@ function viewResultado(){
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'+
       '<span>Copiar prompt</span></button></div>';
 
-  // Formulario a la derecha (solo nombre y correo) + botón que brilla al completar
-  var saberMas='<div class="more"><h4>¿Conversamos?</h4>'+
-    '<p>Si quieres llevar esta ruta a tu equipo o explorar una herramienta a tu medida, en Montblanc te acompañamos.</p></div>';
+  // Regalo = elección: curso para profundizar / licencia de Claude / hora con consultor.
+  function gopt(val,ic,ttl,desc,chk){
+    return '<label class="gopt'+(chk?' on':'')+'"><input type="radio" name="regalo" value="'+val+'"'+(chk?' checked':'')+'>'+
+      '<span class="go-ic" aria-hidden="true">'+ic+'</span>'+
+      '<span class="go-tx"><b>'+ttl+'</b><small>'+desc+'</small></span>'+
+      '<span class="go-mark" aria-hidden="true"></span></label>';
+  }
+  var opcionesRegalo =
+    gopt('curso','🎓','Un curso para profundizar', esc(cr.titulo)+' — aprende estructurado, a tu ritmo.', true)+
+    gopt('licencia','⚡','Una licencia de Claude', 'Pruébala tú mismo con tu caso real; nosotros coordinamos la entrega.', false)+
+    gopt('consultor','🧭','Una hora con un consultor', 'Sesión 1:1 con Montblanc para arrancar con foco en tu caso.', false);
   var bloqueForm='<aside class="road-side"><div class="block form-card">'+
-    '<span class="kicker" style="color:var(--gift-ink)">Reclama tu regalo</span>'+
-    '<h3>Obtén tu curso de cortesía</h3>'+
-    '<p class="sub">Déjanos tu nombre y correo; coordinamos la entrega a tu correo.</p>'+
+    '<span class="kicker" style="color:var(--gift-ink)">Tu regalo de Montblanc</span>'+
+    '<h3>Elige cómo quieres partir</h3>'+
+    '<p class="sub">Escoge una opción y déjanos tus datos. Te contactamos para coordinar la entrega.</p>'+
     '<form class="form" id="claimForm" novalidate>'+
+      '<div class="gopts">'+opcionesRegalo+'</div>'+
       '<div class="field"><label for="f-nombre">Nombre y apellido</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre"></div>'+
       '<div class="field"><label for="f-email">Correo</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="tucorreo@empresa.com"></div>'+
       '<div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>No completar este campo<input id="f-web" name="website" tabindex="-1" autocomplete="off"></label></div>'+
       '<div id="formMsg"></div>'+
-      '<button class="btn full" id="submitBtn" type="submit">Obtener mi regalo</button>'+
-      '<p class="consent">Usaremos tus datos solo para coordinar la entrega de tu curso. Montblanc Consulting.</p>'+
-    '</form></div>'+saberMas+'</aside>';
+      '<button class="btn full" id="submitBtn" type="submit">Quiero mi regalo</button>'+
+      '<p class="consent">Usaremos tus datos solo para coordinar la entrega de tu regalo. Montblanc Consulting.</p>'+
+    '</form>'+
+    '<p class="agenda-alt">¿Prefieres hablar ahora? <a id="agendaLink" href="#agendar" data-placeholder="1">Agenda una hora con un consultor ↗</a></p>'+
+    '</div></aside>';
+
+  // ¿Y después? (recursos para seguir, accesibles y verificados)
+  var sigHtml=siguienteRecursos().map(function(r){
+    return '<a class="sig-card" href="'+esc(r.url)+'" target="_blank" rel="noopener">'+
+      '<span class="sig-ic" aria-hidden="true">'+r.ic+'</span>'+
+      '<span class="sig-et">'+esc(r.et)+'</span>'+
+      '<b class="sig-t">'+esc(r.t)+'</b>'+
+      '<span class="sig-prov">'+esc(r.prov)+'</span>'+
+      '<span class="sig-d">'+esc(r.d)+'</span>'+
+      '<span class="sig-go">Abrir ↗</span></a>';
+  }).join('');
+  var bloqueSiguiente='<div class="block siguiente"><span class="kicker">¿Y después?</span>'+
+    '<h3>Para seguir avanzando</h3>'+
+    '<p class="sub">Cuando quieras ir más allá del regalo, estos son los recursos que recomendamos — pensados para un equipo directivo.</p>'+
+    '<div class="sig-grid">'+sigHtml+'</div></div>';
 
   // (los ejemplos de Montblanc ahora viven en la pantalla de Objetivo)
   var acciones='<div class="roadmap-actions">'+
@@ -1103,9 +1181,10 @@ function viewResultado(){
     '</header>'+
     bloqueFit+
     '<div class="road-grid">'+
-      '<div class="road-main">'+bloqueRail+bloquePrompt+'</div>'+
+      '<div class="road-main">'+bloqueEtapas+bloquePrompt+'</div>'+
       bloqueForm+
     '</div>'+
+    bloqueSiguiente+
     cierre+
   '</div>';
 }
@@ -1116,12 +1195,12 @@ function chip(k,v,go){
 }
 
 function viewExito(){
-  var cr=cursoRecomendado();
+  var reg=state.regalo || {label:cursoRecomendado().titulo};
   return '<div class="success">'+
     '<div class="seal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></div>'+
     '<h2>Gracias. Hemos registrado tu solicitud.</h2>'+
-    '<p class="lead" style="margin:0 auto">Montblanc Consulting te contactará al correo que indicaste para coordinar la entrega de tu curso de cortesía.</p>'+
-    '<ul class="recap"><li>✦ '+esc(cr.titulo)+'</li></ul>'+
+    '<p class="lead" style="margin:0 auto">En los próximos <b>2 días hábiles</b> Montblanc Consulting te contactará al correo que indicaste para coordinar la entrega de tu regalo.</p>'+
+    '<ul class="recap"><li>✦ '+esc(reg.label)+'</li></ul>'+
     '<button type="button" class="btn" data-go="0">Volver al inicio</button></div>';
 }
 
@@ -1228,10 +1307,15 @@ async function enviar(form){
 
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), cr=cursoRecomendado();
   var nivelTemaTxt=(temaUsaNivelTema()&&ntm)?ntm.nombre:'—';
+  var regaloVal=(form.regalo && form.regalo.value) || 'curso';
+  var regaloMap={curso:cr.titulo, licencia:'Licencia de Claude (probar la herramienta)', consultor:'Hora 1:1 con un consultor Montblanc'};
+  var regaloTxt=regaloMap[regaloVal]||cr.titulo;
+  var regaloUrl=regaloVal==='curso'?(cr.url||''):'';
+  state.regalo={tipo:regaloVal, label:regaloTxt};
   var payload={
     nombre:nombre, email:email, empresa:empresa,
     tema:t.titulo, stack:s.nombre, nivelIA:nia.nombre, nivelTema:nivelTemaTxt,
-    curso:cr.titulo, regalosTexto:cr.titulo,
+    curso:regaloTxt, regalosTexto:regaloTxt,
     fecha:new Date().toISOString(), fechaLocal:new Date().toLocaleString('es-CL')
   };
 
@@ -1259,7 +1343,7 @@ async function enviar(form){
   }
   var row={ nombre:nombre, email:email, empresa:empresa,
     tema:t.titulo, herramienta:s.nombre, nivel_ia:nia.nombre, nivel_tema:nivelTemaTxt,
-    curso:cr.titulo, url_curso:cr.url||'' };
+    curso:regaloTxt, url_curso:regaloUrl };
   try{
     var resp=await fetch(SUPA_URL.replace(/\/$/,'')+'/rest/v1/solicitudes',{
       method:'POST',
@@ -1328,7 +1412,17 @@ function bind(){
     var sbtn=document.getElementById('submitBtn');
     function chkReady(){ var ok=form.nombre.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()); if(sbtn) sbtn.classList.toggle('ready', !!ok); }
     form.nombre.addEventListener('input', chkReady); form.email.addEventListener('input', chkReady); chkReady();
+    // resaltar la opción de regalo elegida
+    function markGopt(){ Array.prototype.forEach.call(stage.querySelectorAll('.gopt'), function(l){ var inp=l.querySelector('input'); l.classList.toggle('on', !!(inp && inp.checked)); }); }
+    Array.prototype.forEach.call(stage.querySelectorAll('.gopt input[name=regalo]'), function(r){ r.addEventListener('change', markGopt); });
+    markGopt();
   }
+  // agendar con consultor (placeholder por definir)
+  var ag=document.getElementById('agendaLink');
+  if(ag) ag.addEventListener('click', function(ev){
+    if(ag.getAttribute('data-placeholder')){ ev.preventDefault();
+      alert('El agendamiento directo con un consultor estará disponible pronto.\n\nPor ahora, elige "Una hora con un consultor" en el formulario y te contactamos para coordinar.'); }
+  });
 }
 
 function goto(step){
@@ -1338,7 +1432,7 @@ function goto(step){
   if(step>=4 && !state.nivelIA) step=3;
   if(step===4 && !temaUsaNivelTema()) step=5;              // Investigación no usa nivel del tema
   if(step>=5 && temaUsaNivelTema() && !state.nivelTema) step=4;
-  if(step===0){ state.tema=state.stack=state.nivelIA=state.nivelTema=null; state.enviado=false; }
+  if(step===0){ state.tema=state.stack=state.nivelIA=state.nivelTema=null; state.enviado=false; state.regalo=null; }
   state.step=step; render();
 }
 
