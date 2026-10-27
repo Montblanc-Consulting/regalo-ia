@@ -430,9 +430,9 @@
   .go-tx{display:flex;flex-direction:column;gap:1px;flex:1}
   .go-tx b{font-size:13.5px;color:var(--ink)}
   .go-tx small{font-size:12px;color:var(--muted);line-height:1.4}
-  .go-mark{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);margin-top:2px;position:relative}
-  .gopt.on .go-mark{border-color:var(--navy)}
-  .gopt.on .go-mark::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--navy)}
+  .go-mark{flex:none;width:18px;height:18px;border-radius:6px;border:2px solid var(--line);margin-top:2px;position:relative}
+  .gopt.on .go-mark{border-color:var(--navy);background:var(--navy)}
+  .gopt.on .go-mark::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
   .agenda-alt{font-size:12.5px;color:var(--muted);margin:12px 0 0}
   .agenda-alt a{color:var(--accent-ink);font-weight:600;text-decoration:none}
   .agenda-alt a:hover{text-decoration:underline}
@@ -1117,7 +1117,7 @@ function viewResultado(){
 
   // Regalo = elección: curso para profundizar / licencia de Claude / hora con consultor.
   function gopt(val,ic,ttl,desc,chk){
-    return '<label class="gopt'+(chk?' on':'')+'"><input type="radio" name="regalo" value="'+val+'"'+(chk?' checked':'')+'>'+
+    return '<label class="gopt'+(chk?' on':'')+'"><input type="checkbox" name="regalo" value="'+val+'"'+(chk?' checked':'')+'>'+
       '<span class="go-ic" aria-hidden="true">'+ic+'</span>'+
       '<span class="go-tx"><b>'+ttl+'</b><small>'+desc+'</small></span>'+
       '<span class="go-mark" aria-hidden="true"></span></label>';
@@ -1129,7 +1129,7 @@ function viewResultado(){
   var bloqueForm='<aside class="road-side"><div class="block form-card">'+
     '<span class="kicker" style="color:var(--gift-ink)">Tu regalo de Montblanc</span>'+
     '<h3>Elige cómo quieres partir</h3>'+
-    '<p class="sub">Escoge una opción y déjanos tus datos. Te contactamos para coordinar la entrega.</p>'+
+    '<p class="sub">Puedes elegir una o las que quieras. Déjanos tus datos y te contactamos para coordinar la entrega.</p>'+
     '<form class="form" id="claimForm" novalidate>'+
       '<div class="gopts">'+opcionesRegalo+'</div>'+
       '<div class="field"><label for="f-nombre">Nombre y apellido</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre"></div>'+
@@ -1195,12 +1195,14 @@ function chip(k,v,go){
 }
 
 function viewExito(){
-  var reg=state.regalo || {label:cursoRecomendado().titulo};
+  var reg=state.regalo || {labels:[cursoRecomendado().titulo]};
+  var regLabels=reg.labels||[reg.label];
+  var regItems=regLabels.map(function(l){return '<li>✦ '+esc(l)+'</li>';}).join('');
   return '<div class="success">'+
     '<div class="seal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></div>'+
     '<h2>Gracias. Hemos registrado tu solicitud.</h2>'+
     '<p class="lead" style="margin:0 auto">En los próximos <b>2 días hábiles</b> Montblanc Consulting te contactará al correo que indicaste para coordinar la entrega de tu regalo.</p>'+
-    '<ul class="recap"><li>✦ '+esc(reg.label)+'</li></ul>'+
+    '<ul class="recap">'+regItems+'</ul>'+
     '<button type="button" class="btn" data-go="0">Volver al inicio</button></div>';
 }
 
@@ -1307,11 +1309,13 @@ async function enviar(form){
 
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), cr=cursoRecomendado();
   var nivelTemaTxt=(temaUsaNivelTema()&&ntm)?ntm.nombre:'—';
-  var regaloVal=(form.regalo && form.regalo.value) || 'curso';
+  var regaloVals=Array.prototype.map.call(document.querySelectorAll('input[name=regalo]:checked'), function(i){return i.value;});
+  if(!regaloVals.length){ msg.innerHTML='<div class="msg err">Elige al menos una opción de regalo.</div>'; return; }
   var regaloMap={curso:cr.titulo, licencia:'Licencia de Claude (probar la herramienta)', consultor:'Hora 1:1 con un consultor Montblanc'};
-  var regaloTxt=regaloMap[regaloVal]||cr.titulo;
-  var regaloUrl=regaloVal==='curso'?(cr.url||''):'';
-  state.regalo={tipo:regaloVal, label:regaloTxt};
+  var regaloLabels=regaloVals.map(function(v){return regaloMap[v]||v;});
+  var regaloTxt=regaloLabels.join(' + ');
+  var regaloUrl=regaloVals.indexOf('curso')>=0?(cr.url||''):'';
+  state.regalo={tipos:regaloVals, labels:regaloLabels, label:regaloTxt};
   var payload={
     nombre:nombre, email:email, empresa:empresa,
     tema:t.titulo, stack:s.nombre, nivelIA:nia.nombre, nivelTema:nivelTemaTxt,
