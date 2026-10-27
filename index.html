@@ -627,10 +627,10 @@ var TEMAS = [
    prompt:'Quiero crear una aplicación simple y no sé programar. Serás a la vez mi equipo de desarrollo y mi profesor.\n\nLa idea es: [describe en 2–3 líneas qué problema resuelve y para quién].\n\nEmpieza proponiéndome la versión más simple que ya sea útil (un MVP) y pregúntame lo que necesites para acotarla. Cuando estemos de acuerdo, guíame paso a paso: dime qué debo instalar o abrir, y entrégame el código por partes, explicándome en palabras simples qué hace cada una antes de seguir con la siguiente.\n\nPara practicar sin exponer información, partamos con una demo en un solo archivo HTML que corra en mi computador; no uses datos reales ni sensibles.',
    resumen:'Tu primer prototipo en ~5 horas. Publicarlo, cuando quieras.',
    etapas:[
-     {t:'Fundamentos',d:'Curso regalado + entender qué es el front (lo que se ve) y el back (lo que procesa), sin tecnicismos.',h:'3 h'},
-     {t:'Front y back simple',d:'Una primera versión que funcione: una pantalla y una lógica básica, generadas conversando con la IA.',h:'2 h'},
-     {t:'Front y back intermedio',d:'Agrega datos que se guardan y conéctala con otras herramientas (por ejemplo, Supabase como base de datos).',h:'3 h'},
-     {t:'Publícala',d:'Ponla en línea con Vercel para compartirla por link con tu equipo o tus clientes.',h:'Opcional'}
+     {t:'Fundamentos',d:'Completa tu curso regalado: las bases para sacarle partido a tu herramienta de IA con confianza.',h:'3 h'},
+     {t:'Entiende front y back',d:'Qué es el front (lo que se ve) y el back (lo que procesa) y cómo encajan en una app. Para saber qué pedir, sin construir todavía.',h:'2 h'},
+     {t:'Construye tu primera app',d:'Describe tu idea y deja que tu IA arme una versión que funcione —una pantalla y su lógica— iterando por chat. Sin programar.',h:'3 h'},
+     {t:'Compártela (y hazla crecer)',d:'Compártela directo desde tu herramienta. Cuando quieras llevarla a producción, publícala en un host (p. ej. Vercel) con una base de datos (p. ej. Supabase).',h:'Opcional'}
    ]},
   {id:'cyber', titulo:'Ciberseguridad y riesgo', corto:'ciberseguridad',
    desc:'Entiende qué puedes y qué no debes hacer con la IA y tus datos, y adopta buenas prácticas para proteger a tu equipo. Reduce tu riesgo sin ser experto técnico.',
@@ -655,7 +655,7 @@ var STACKS = [
 var STACK_FIT = {
   sistematizar:['claude','gemini','chatgpt'],
   investigar:['claude','gemini','chatgpt','perplexity'],
-  app:['claude','gemini','chatgpt'],
+  app:['claude','gemini'],
   cyber:['claude','gemini','chatgpt']
 };
 
@@ -795,8 +795,20 @@ var CURSO_FUND = {
 var CURSO_TEMA = {
   sistematizar:{
     _def:[
-      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable (sirve con cualquier IA). Por Andrew Ng.'},
-      {t:'Operationalizing No-Code AI with Zapier', prov:'Board Infinity · Coursera', url:'https://www.coursera.org/learn/operationalizing-no-code-ai-with-zapier-automation-and-plans', d:'Para llegar lejos: montar automatizaciones reales multi-paso con Zapier, Make y Power Automate, con manejo de errores.'}
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
+      {t:'Generative AI for Everyone', prov:'DeepLearning.AI · Coursera', url:'https://www.coursera.org/learn/generative-ai-for-everyone', d:'Para llegar lejos: decidir qué tareas automatizar y diseñar nuevos flujos de trabajo. Por Andrew Ng. 4.8★.'}
+    ],
+    claude:[
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
+      {t:'Claude Projects — Intro', prov:'Claude Academy (Anthropic)', url:'https://academy.claude.com/tutorials/intro-to-projects', d:'Para llegar lejos: arma un Project propio con tu conocimiento e instrucciones y reutilízalo para tus tareas recurrentes. Tutorial oficial, sin plataformas externas.'}
+    ],
+    gemini:[
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
+      {t:'Crear Gems en Gemini', prov:'Google (oficial)', url:'https://support.google.com/gemini/answer/15146780', d:'Para llegar lejos: crea un Gem propio (instrucciones + conocimiento) y reutilízalo para tus tareas recurrentes. Guía oficial, sin plataformas externas.'}
+    ],
+    chatgpt:[
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
+      {t:'OpenAI GPTs: Creating Your Own Custom AI Assistants', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/openai-custom-gpts', d:'Para llegar lejos: crea un GPT propio (instrucciones, conocimiento, acciones) para automatizar tus tareas recurrentes. 4.8★, 807 reseñas.'}
     ]
   },
   investigar:{
@@ -813,8 +825,8 @@ var CURSO_TEMA = {
       {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
     ],
     chatgpt:[
-      {t:'ChatGPT Advanced Data Analysis', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/chatgpt-advanced-data-analysis', d:'Para investigar con ChatGPT: analizar documentos, PDFs y planillas, y detectar errores antes de usar el resultado.'},
-      {t:'Generative AI Strategic Leader', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/specializations/generative-ai-strategic-leader', d:'Para decidir: usar la investigación con IA para decisiones estratégicas e inteligencia competitiva.'}
+      {t:'Deep Research con ChatGPT', prov:'OpenAI Academy (oficial)', url:'https://academy.openai.com/public/videos/deep-research-2025-03-11', d:'Para investigar con ChatGPT: usar Deep Research para reunir y sintetizar fuentes con citas verificables. Recurso oficial de OpenAI.'},
+      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★.'}
     ],
     perplexity:[
       {t:'Perplexity AI: Comprehensive Guide to Generative AI', prov:'Coursera', url:'https://www.coursera.org/learn/perplexity-ai-comprehensive-guide-to-generative-ai', d:'Para aplicarlo: 6 módulos de investigación de negocio con Perplexity — mercado, competencia y planificación. Sin API.'},
@@ -823,8 +835,16 @@ var CURSO_TEMA = {
   },
   app:{
     _def:[
-      {t:'Vibe Coding 101 with Replit', prov:'DeepLearning.AI + Replit', url:'https://www.deeplearning.ai/short-courses/vibe-coding-101-with-replit/', d:'Para pasar a la acción: construir y publicar tu primera app con el método correcto. Por Andrew Ng y el Presidente de Replit.'},
-      {t:'Building your first app with Replit', prov:'Replit · Coursera', url:'https://www.coursera.org/learn/building-your-first-app-with-replit', d:'Para llegar lejos: curso oficial de Replit para armar y publicar tu app por link, en lenguaje natural.'}
+      {t:'How the Web Works', prov:'KnowledgeCity', url:'https://www.knowledgecity.com/en/library/CMP1321/how-the-web-works/', d:'Para entender: qué es el front (lo que se ve) y el back (lo que procesa) y cómo funciona una app web. Conceptual, en español, sin programar.'},
+      {t:'Build apps in Google AI Studio', prov:'Google (oficial)', url:'https://ai.google.dev/gemini-api/docs/aistudio-build-mode', d:'Para construir: describe tu app en lenguaje natural y la IA la genera. Sin código ni plataformas externas.'}
+    ],
+    claude:[
+      {t:'How the Web Works', prov:'KnowledgeCity', url:'https://www.knowledgecity.com/en/library/CMP1321/how-the-web-works/', d:'Para entender: qué es el front (lo que se ve) y el back (lo que procesa) y cómo funciona una app web. Conceptual, en español, sin programar.'},
+      {t:'Crear apps con Claude Artifacts', prov:'Claude Academy (Anthropic)', url:'https://academy.claude.com/tutorials/prototype-ai-powered-apps-with-claude-artifacts', d:'Para construir: describe el problema, deja que Claude te entreviste y arme la app como Artifact; itera y compártela. Tutorial oficial, sin código.'}
+    ],
+    gemini:[
+      {t:'How the Web Works', prov:'KnowledgeCity', url:'https://www.knowledgecity.com/en/library/CMP1321/how-the-web-works/', d:'Para entender: qué es el front (lo que se ve) y el back (lo que procesa) y cómo funciona una app web. Conceptual, en español, sin programar.'},
+      {t:'Build apps in Google AI Studio', prov:'Google (oficial)', url:'https://ai.google.dev/gemini-api/docs/aistudio-build-mode', d:'Para construir: describe tu app en lenguaje natural y Gemini la genera en AI Studio. Sin código ni plataformas externas.'}
     ]
   },
   cyber:{
