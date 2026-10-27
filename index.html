@@ -1,4 +1,6 @@
-<title>Ruta IA Montblanc</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruta del Saber — Montblanc</title>
 <style>
   /* Layout: recorrido guiado en una sola columna centrada (max ~660px);
      barra de marca arriba, progreso, tarjeta de contenido, cierre editorial.
@@ -197,6 +199,20 @@
     font-size:15px;line-height:1.42;font-style:italic;color:var(--ink);box-shadow:0 12px 32px -24px var(--shadow)}
   .qcard .by{display:block;font-style:normal;font-weight:700;font-size:12.5px;letter-spacing:.04em;
     color:var(--accent-ink);margin-top:12px}
+
+  /* Resumen ejecutivo (pantalla de entrada) */
+  .resumen-band{margin:28px 0 8px;border-top:1px solid var(--line);padding-top:26px}
+  .resumen-band .rb-title{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.4vw,27px);
+    line-height:1.18;letter-spacing:-.01em;color:var(--ink);text-align:center;max-width:24ch;margin:6px auto 0}
+  .rb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  @media (max-width:760px){ .rb-grid{grid-template-columns:1fr} }
+  .rcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 20px 22px;
+    box-shadow:0 12px 32px -24px var(--shadow)}
+  .rcard .ric{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:var(--surface-2);
+    font-size:20px;margin-bottom:12px}
+  .rcard b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:5px}
+  .rcard span{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .rb-cta{display:flex;justify-content:center;margin-top:24px}
 
   /* Botones */
   .btn{appearance:none;-webkit-appearance:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;
@@ -574,7 +590,7 @@
   <span class="brand" id="homeBrand">
     <img class="logo" alt="Montblanc Consulting" src="montblanc-logo.svg">
   </span>
-  <span class="tagline" id="homeTag">Regalo fin de año · 2026</span>
+  <span class="tagline" id="homeTag">Ruta del Saber · 2026</span>
   <span class="spacer"></span>
   <button class="ghost" id="adminBtn" type="button" hidden>Solicitudes</button>
 </div></div>
@@ -1017,18 +1033,33 @@ function quotesBand(){
 function viewIntro(){
   var orbit='<div class="orbit">'+
     '<span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>'+
-    '<button type="button" class="hub hub-cta" data-go="1"><span class="k">Montblanc · 2026</span><span class="t">Comenzar</span><span class="hub-go" aria-hidden="true">→</span></button>'+
+    '<button type="button" class="hub hub-cta" data-go="1"><span class="k">Ruta del Saber</span><span class="t">Comenzar</span><span class="hub-go" aria-hidden="true">→</span></button>'+
     orbitNodes()+
   '</div>';
+  // Resumen ejecutivo: qué es, qué recibes y cuánto toma — con un CTA visible en todos los tamaños.
+  var resumen='<section class="resumen-band">'+
+    '<p class="eyebrow" style="text-align:center;color:var(--muted)">El regalo, en breve</p>'+
+    '<h2 class="rb-title">Una ruta de aprendizaje hecha a tu medida — y un primer paso de regalo.</h2>'+
+    '<div class="rb-grid">'+
+      '<div class="rcard"><span class="ric" aria-hidden="true">🧭</span><b>Tu ruta por etapas</b>'+
+        '<span>De lo simple a lo avanzado, según tu objetivo y la herramienta de IA que ya usas.</span></div>'+
+      '<div class="rcard"><span class="ric" aria-hidden="true">🎁</span><b>Un regalo para empezar</b>'+
+        '<span>Un curso de cortesía — o una licencia de Claude, o una hora con un consultor. Tú eliges.</span></div>'+
+      '<div class="rcard"><span class="ric" aria-hidden="true">⏱️</span><b>En un minuto</b>'+
+        '<span>Respondes 3 preguntas y te mostramos tu ruta. Luego la recorres a tu ritmo.</span></div>'+
+    '</div>'+
+    '<div class="rb-cta"><button type="button" class="btn" data-go="1">Comenzar mi ruta <span aria-hidden="true">→</span></button></div>'+
+  '</section>';
   return '<section class="hero">'+
     '<div class="hero-copy">'+
-      '<p class="eyebrow">Regalo de fin de año · Montblanc Consulting</p>'+
+      '<p class="eyebrow">Ruta del Saber · Regalo de fin de año</p>'+
       '<h1>Aprender más rápido que la competencia es la única ventaja sostenible.</h1>'+
-      '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, te armamos una <b>ruta de IA hecha a tu medida</b> y te damos un <b>curso de cortesía</b> para dar el primer paso. Responde unas preguntas y descúbrela — toca el círculo para comenzar.</p>'+
+      '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, Montblanc te regala <b>Ruta del Saber</b>: una ruta de IA hecha a tu medida para dar ese primer paso. Toca el círculo —o el botón de abajo— para comenzar.</p>'+
     '</div>'+
     '<div class="hero-art">'+orbit+'</div>'+
   '</section>'+
   '<div class="explore-hint">Explorar</div>'+
+  resumen+
   quotesBand();
 }
 
@@ -1301,7 +1332,7 @@ async function descargarRoadmap(){
     : 'IA '+esc(nia.nombre);
   var fecha=new Date().toLocaleDateString('es-CL',{year:'numeric',month:'long',day:'numeric'});
   var doc='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
-    '<title>Mi ruta IA — Montblanc</title><style>'+
+    '<title>Mi Ruta del Saber — Montblanc</title><style>'+
     ':root{--navy:#223a5e;--ink:#2c3a4f;--muted:#6f7788;--line:#e6ddcd;--cream:#f3ecdf;--surface:#fff;--accent:#284267;--gift:#a9772f;--giftbg:#faf3e6}'+
     '*{box-sizing:border-box}body{font-family:Tahoma,Verdana,"Segoe UI",sans-serif;margin:0;background:var(--cream);color:var(--ink);line-height:1.55}'+
     '.sheet{max-width:760px;margin:0 auto;background:var(--cream)}'+
@@ -1329,7 +1360,7 @@ async function descargarRoadmap(){
     '.cmeta{display:block;font-size:12px;color:var(--muted);word-break:break-word}'+
     '.foot{margin:26px 34px 0;padding:16px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}'+
     '</style></head><body><div class="sheet">'+
-    '<div class="band"><p class="ey">Regalo de fin de año · Montblanc Consulting</p>'+
+    '<div class="band"><p class="ey">Ruta del Saber · Regalo de fin de año · Montblanc</p>'+
       '<h1>Tu ruta para aprender IA</h1>'+
       '<div class="pills"><span class="pill">Objetivo · '+esc(t.titulo)+'</span><span class="pill">Herramienta · '+esc(s.nombre)+'</span><span class="pill">Nivel · '+nivelLine+'</span></div></div>'+
     '<div class="wrap">'+
