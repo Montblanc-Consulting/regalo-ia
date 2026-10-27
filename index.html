@@ -420,6 +420,12 @@
   .et-tag.base{background:transparent;color:var(--muted);border:1px solid var(--line)}
   .et-d{font-size:13px;color:var(--muted);line-height:1.45}
   .et-h{font-size:12px;color:var(--accent-ink);font-weight:600;margin-top:2px}
+  .et-course{display:inline-flex;align-items:center;gap:6px;width:fit-content;max-width:100%;font-size:11.5px;font-weight:600;
+    color:var(--accent-ink);text-decoration:none;background:var(--surface-2);border:1px solid var(--line);border-radius:9px;padding:4px 9px;margin-top:7px;line-height:1.3}
+  .et-course:hover{border-color:var(--accent)}
+  .et-course.gift{color:#fff;background:var(--navy);border-color:var(--navy)}
+  .et-course .ec-rol{font-weight:700;letter-spacing:.02em}
+  .et-course .ec-sep{opacity:.5}
   /* Elegir regalo (3 opciones) */
   .gopts{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
   .gopt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface);transition:border-color .12s,background .12s}
@@ -1087,17 +1093,28 @@ function viewResultado(){
   // Roadmap POR ETAPAS: lo que la persona podrá ir haciendo (de lo simple a lo avanzado).
   var cr=cursoRecomendado();
   var start=entryIndex();
+  var cpath=cursoPath(), gidx=cursoEntry();
   var etapasHtml=(t.etapas||[]).map(function(e,i){
     var cls=i<start?'etapa done':(i===start?'etapa here':'etapa');
     var tag=i===start?'<span class="et-tag">Empiezas aquí</span>':(i<start?'<span class="et-tag base">Ya lo manejas</span>':'');
+    // Curso con el que se aprende esta etapa (Fundamentos→Aplicado→Avanzado; la última etapa no lleva curso).
+    var c=cpath[i], cursoLine='';
+    if(c){
+      var rol=i===gidx?'🎁 Curso incluido':(i<gidx?'📘 Base':'📈 Para seguir');
+      cursoLine='<a class="et-course'+(i===gidx?' gift':'')+'" href="'+esc(c.url||'#')+'" target="_blank" rel="noopener">'+
+        '<span class="ec-rol">'+rol+'</span> <span class="ec-sep">·</span> '+esc(c.t)+' <span class="ec-sep">·</span> '+esc(c.prov)+' ↗</a>';
+    } else {
+      cursoLine='<span class="et-h" style="color:var(--muted);font-weight:500">Guíate con tu prompt y los recursos de «¿Y después?» más abajo.</span>';
+    }
     return '<div class="'+cls+'"><span class="et-n">'+(i+1)+'</span>'+
       '<div class="et-body"><b>'+esc(e.t)+'</b>'+tag+
       '<span class="et-d">'+esc(e.d)+'</span>'+
+      cursoLine+
       (e.h?'<span class="et-h">⏱ '+esc(e.h)+'</span>':'')+'</div></div>';
   }).join('');
   var bloqueEtapas='<div class="block"><span class="kicker">Tu roadmap, paso a paso</span>'+
     '<h3>Lo que vas a poder hacer</h3>'+
-    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. Lo valioso es entender qué se puede lograr y saber qué pedir.</p>'+
+    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. Cada etapa indica <b>con qué curso aprenderla</b>.</p>'+
     '<div class="etapas">'+etapasHtml+'</div>'+
     (t.resumen?'<p class="sub" style="margin-top:12px"><b>⏱ </b>'+esc(t.resumen)+'</p>':'')+'</div>';
 
