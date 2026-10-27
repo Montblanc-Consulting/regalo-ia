@@ -864,8 +864,11 @@ var SIGUIENTE_CYBER = [
   {ic:'🧭', et:'Marco', t:'NIST AI Risk Management Framework', prov:'NIST', url:'https://www.nist.gov/itl/ai-risk-management-framework', d:'El marco de referencia (gratis) para gestionar el riesgo de IA en la organización.'},
   {ic:'📬', et:'Al día', t:'IAPP AI Governance Center', prov:'IAPP', url:'https://iapp.org/about/ai-governance-center/', d:'Newsletter semanal para seguir la regulación de IA (UE, EE.UU.). Gratis.'}
 ];
+/* Recurso opcional de nivel técnico (solo para quien, tras crear su app, quiera ir a fondo). */
+var SIGUIENTE_APP = {ic:'🛠️', et:'Técnico · opcional', t:'Developer Roadmaps', prov:'roadmap.sh', url:'https://roadmap.sh/', d:'Si te picó el bicho y quieres ir a fondo (front, back, programar de verdad): la referencia gratuita. Nivel desarrollador.'};
 function siguienteRecursos(){
   if(state.tema==='cyber') return [SIGUIENTE[0], SIGUIENTE_CYBER[0], SIGUIENTE_CYBER[1]];
+  if(state.tema==='app') return [SIGUIENTE[0], SIGUIENTE[1], SIGUIENTE_APP];
   return SIGUIENTE;
 }
 var NIVEL_CURSO = ['Fundamentos','Aplicado','Avanzado'];
