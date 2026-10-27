@@ -408,15 +408,21 @@
   .rail-step.gift .rail-go{color:var(--navy)}
   /* Roadmap por etapas (lo que vas a poder hacer) */
   .etapas{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px}
-  .etapa{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+  .etapa{display:block;border:1.5px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
   .etapa.done{opacity:.72;background:var(--surface-2)}
   .etapa.here{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.10),rgba(40,66,103,.03));box-shadow:0 10px 24px -18px rgba(34,58,94,.5)}
+  .et-sum{display:flex;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;list-style:none;user-select:none}
+  .et-sum::-webkit-details-marker{display:none}
+  .et-sum::marker{content:""}
   .et-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
   .etapa.done .et-n{background:var(--accent-soft);color:var(--accent-ink)}
   .etapa.here .et-n{background:var(--navy);color:#fff}
-  .et-body{display:flex;flex-direction:column;gap:2px}
-  .et-body>b{font-size:14.5px;color:var(--ink)}
-  .et-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:6px;padding:2px 7px;margin:3px 0}
+  .et-ttl{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:7px}
+  .et-ttl>b{font-size:14.5px;color:var(--ink)}
+  .et-caret{flex:none;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin-right:3px}
+  .etapa[open] .et-caret{transform:rotate(-135deg)}
+  .et-body{display:flex;flex-direction:column;gap:3px;padding:0 14px 13px 52px}
+  .et-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:6px;padding:2px 7px}
   .et-tag.base{background:transparent;color:var(--muted);border:1px solid var(--line)}
   .et-d{font-size:13px;color:var(--muted);line-height:1.45}
   .et-h{font-size:12px;color:var(--accent-ink);font-weight:600;margin-top:2px}
@@ -632,7 +638,8 @@ var TEMAS = [
      {t:'Construye tu primera app',d:'Describe tu idea y deja que tu IA arme una versión que funcione —una pantalla y su lógica— iterando por chat. Sin programar.',h:'3 h'},
      {t:'Compártela (y hazla crecer)',d:'Compártela directo desde tu herramienta. Cuando quieras llevarla a producción, publícala en un host (p. ej. Vercel) con una base de datos (p. ej. Supabase).',h:'Opcional'}
    ]},
-  {id:'cyber', titulo:'Ciberseguridad y riesgo', corto:'ciberseguridad',
+  // oculto:true -> no se muestra como objetivo (reversible: quita esta línea para reactivarlo).
+  {id:'cyber', oculto:true, titulo:'Ciberseguridad y riesgo', corto:'ciberseguridad',
    desc:'Entiende qué puedes y qué no debes hacer con la IA y tus datos, y adopta buenas prácticas para proteger a tu equipo. Reduce tu riesgo sin ser experto técnico.',
    prompt:'Eres mi asesor de ciberseguridad y me hablas como a un ejecutivo, sin tecnicismos.\n\nContexto: [describe en 2–3 líneas a qué se dedica tu equipo y con qué información y herramientas trabajan].\n\nHazme las preguntas necesarias para entender cómo manejamos datos, accesos y proveedores. Luego entrégame un diagnóstico de riesgos priorizado (alto / medio / bajo) y, para cada riesgo, una acción concreta que podamos tomar esta semana. Termina con las 3 cosas más importantes que debería resolver primero.',
    resumen:'Tu diagnóstico de riesgo en ~3,5 horas. La gestión continua, a tu ritmo.',
@@ -921,6 +928,8 @@ var stage = document.getElementById('stage');
 var restartBtn = document.getElementById('restartBtn');
 
 function tema(){return TEMAS.filter(function(t){return t.id===state.tema})[0];}
+// Objetivos visibles en los selectores (excluye los ocultos; los datos quedan para reactivar fácil).
+function temasVisibles(){return TEMAS.filter(function(t){return !t.oculto;});}
 function stack(){return STACKS.filter(function(s){return s.id===state.stack})[0];}
 function nivelIA(){return NIVELES_IA.filter(function(n){return n.id===state.nivelIA})[0];}
 function nivelTema(){var o=NIVELES_TEMA[state.tema]; return o?o.opts.filter(function(n){return n.id===state.nivelTema})[0]:null;}
@@ -988,7 +997,7 @@ function recorrido(){
 
 function orbitNodes(){
   var pos=['p1','p2','p3','p4'];
-  return TEMAS.map(function(t,i){
+  return temasVisibles().map(function(t,i){
     return '<div class="onode '+pos[i]+'" aria-hidden="true">'+
       '<span class="num">0'+(i+1)+'</span><span class="lbl">'+esc(cap(t.corto))+'</span></div>';
   }).join('');
@@ -1024,7 +1033,7 @@ function viewIntro(){
 }
 
 function viewTema(){
-  var cards=TEMAS.map(function(t,i){
+  var cards=temasVisibles().map(function(t,i){
     var cur=state.tema===t.id?' aria-current="true"':'';
     return '<button type="button" class="terr" data-pick-tema="'+t.id+'"'+cur+'>'+
       '<span class="num">0'+(i+1)+'</span>'+
@@ -1048,7 +1057,7 @@ function viewPregunta(kind){
   if(kind==='tema'){
     title='¿En qué quieres que la IA te ayude primero?';
     help='Elige el resultado que más valor te aportaría. No te preocupes por acertar: luego podrás volver y explorar otro.';
-    items=TEMAS.map(function(t){return {id:t.id,ttl:t.titulo,d:t.desc,tag:null,ic:IC[t.id]};});
+    items=temasVisibles().map(function(t){return {id:t.id,ttl:t.titulo,d:t.desc,tag:null,ic:IC[t.id]};});
     current=state.tema;
   } else if(kind==='stack'){
     var corto=(tema()&&tema().corto)||'tu tema';
@@ -1084,7 +1093,7 @@ function viewPregunta(kind){
   // Solo en Objetivo: ejemplos reales de Montblanc (preview al pasar el mouse)
   var ejemplos='';
   if(kind==='tema'){
-    var grps=TEMAS.map(function(tm){
+    var grps=temasVisibles().map(function(tm){
       var cs=CASOS[tm.id]||[]; if(!cs.length) return '';
       return '<div class="obj-grp"><span class="obj-grp-t">'+esc(tm.titulo)+'</span><div class="ex-grid">'+
         cs.map(function(c){
@@ -1129,9 +1138,13 @@ function viewResultado(){
   var cr=cursoRecomendado();
   var start=entryIndex();
   var cpath=cursoPath(), gidx=cursoEntry();
+  // Acordeón: solo tu etapa (y la del regalo, si difiere) van abiertas; el resto
+  // se muestran plegadas con su número + título y se abren al hacer click.
   var etapasHtml=(t.etapas||[]).map(function(e,i){
     var cls=i<start?'etapa done':(i===start?'etapa here':'etapa');
+    var openAttr=(i===start||i===gidx)?' open':'';
     var tag=i===start?'<span class="et-tag">Empiezas aquí</span>':(i<start?'<span class="et-tag base">Ya lo manejas</span>':'');
+    var giftTag=(i===gidx)?'<span class="et-tag">🎁 Incluido</span>':'';
     // Curso con el que se aprende esta etapa (Fundamentos→Aplicado→Avanzado; la última etapa no lleva curso).
     var c=cpath[i], cursoLine='';
     if(c){
@@ -1141,15 +1154,18 @@ function viewResultado(){
     } else {
       cursoLine='<span class="et-h" style="color:var(--muted);font-weight:500">Guíate con tu prompt y los recursos de «¿Y después?» más abajo.</span>';
     }
-    return '<div class="'+cls+'"><span class="et-n">'+(i+1)+'</span>'+
-      '<div class="et-body"><b>'+esc(e.t)+'</b>'+tag+
+    return '<details class="'+cls+'"'+openAttr+'>'+
+      '<summary class="et-sum"><span class="et-n">'+(i+1)+'</span>'+
+      '<span class="et-ttl"><b>'+esc(e.t)+'</b>'+tag+giftTag+'</span>'+
+      '<span class="et-caret" aria-hidden="true"></span></summary>'+
+      '<div class="et-body">'+
       '<span class="et-d">'+esc(e.d)+'</span>'+
       cursoLine+
-      (e.h?'<span class="et-h">⏱ '+esc(e.h)+'</span>':'')+'</div></div>';
+      (e.h?'<span class="et-h">⏱ '+esc(e.h)+'</span>':'')+'</div></details>';
   }).join('');
   var bloqueEtapas='<div class="block"><span class="kicker">Tu roadmap, paso a paso</span>'+
     '<h3>Lo que vas a poder hacer</h3>'+
-    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. Cada etapa indica <b>con qué curso aprenderla</b>.</p>'+
+    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. <b>Toca cada etapa</b> para ver el detalle y con qué curso aprenderla.</p>'+
     '<div class="etapas">'+etapasHtml+'</div>'+
     (t.resumen?'<p class="sub" style="margin-top:12px"><b>⏱ </b>'+esc(t.resumen)+'</p>':'')+'</div>';
 
@@ -1446,7 +1462,7 @@ function bind(){
   // tema al azar
   var rnd=document.getElementById('randomBtn');
   if(rnd) rnd.addEventListener('click', function(){
-    var t=TEMAS[Math.floor(Math.random()*TEMAS.length)];
+    var tv=temasVisibles(); var t=tv[Math.floor(Math.random()*tv.length)];
     state.tema=t.id; var pf=STACK_FIT[t.id]||[]; if(state.stack && pf.indexOf(state.stack)<0) state.stack=null;
     goto(2);
   });
