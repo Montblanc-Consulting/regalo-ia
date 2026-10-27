@@ -783,9 +783,9 @@ var GIFT_LIMIT = 2;
    La ruta de cada cliente = Fundamentos (según su herramienta) + Aplicado + Avanzado (según su tema).
    El regalo es el curso en su punto de entrada; los demás quedan como ruta para seguir avanzando. */
 var CURSO_FUND = {
-  claude:    {t:'AI Fluency: Framework & Foundations', prov:'Anthropic · Coursera', url:'https://www.coursera.org/learn/ai-fluency-framework-foundations', d:'Para partir bien: el marco 4D de Anthropic para pensar y delegar en Claude, no sintaxis técnica. 4.8★.'},
-  chatgpt:   {t:'Prompt Engineering for ChatGPT', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/prompt-engineering', d:'Para partir bien: cómo pedirle a ChatGPT y obtener buenos resultados. 4.8★, de los más tomados de Coursera.'},
-  gemini:    {t:'Google AI Essentials', prov:'Google · Coursera', url:'https://www.coursera.org/specializations/ai-essentials-google', d:'Para partir bien: curso oficial de Google para no-técnicos, con Gemini como eje. 4.8★, +2M alumnos.'},
+  claude:    {pago:true, t:'AI Fluency: Framework & Foundations', prov:'Anthropic · Coursera', url:'https://www.coursera.org/learn/ai-fluency-framework-foundations', d:'Para partir bien: el marco 4D de Anthropic para pensar y delegar en Claude, no sintaxis técnica. 4.8★.'},
+  chatgpt:   {pago:true, t:'Prompt Engineering for ChatGPT', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/prompt-engineering', d:'Para partir bien: cómo pedirle a ChatGPT y obtener buenos resultados. 4.8★, de los más tomados de Coursera.'},
+  gemini:    {pago:true, t:'Google AI Essentials', prov:'Google · Coursera', url:'https://www.coursera.org/specializations/ai-essentials-google', d:'Para partir bien: curso oficial de Google para no-técnicos, con Gemini como eje. 4.8★, +2M alumnos.'},
   perplexity:{t:'Investigar con Perplexity — Intro', prov:'Codecademy', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity', d:'Para partir bien: curso gratis y breve para investigar con Perplexity — modos de foco, fuentes citadas y Deep Research. Sin tecnicismos.'}
 };
 /* Aplicado + Avanzado por tema. Afinados por herramienta: NUNCA se recomienda
@@ -796,7 +796,7 @@ var CURSO_TEMA = {
   sistematizar:{
     _def:[
       {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
-      {t:'Generative AI for Everyone', prov:'DeepLearning.AI · Coursera', url:'https://www.coursera.org/learn/generative-ai-for-everyone', d:'Para llegar lejos: decidir qué tareas automatizar y diseñar nuevos flujos de trabajo. Por Andrew Ng. 4.8★.'}
+      {pago:true, t:'Generative AI for Everyone', prov:'DeepLearning.AI · Coursera', url:'https://www.coursera.org/learn/generative-ai-for-everyone', d:'Para llegar lejos: decidir qué tareas automatizar y diseñar nuevos flujos de trabajo. Por Andrew Ng. 4.8★.'}
     ],
     claude:[
       {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
@@ -808,49 +808,49 @@ var CURSO_TEMA = {
     ],
     chatgpt:[
       {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable. Por Andrew Ng.'},
-      {t:'OpenAI GPTs: Creating Your Own Custom AI Assistants', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/openai-custom-gpts', d:'Para llegar lejos: crea un GPT propio (instrucciones, conocimiento, acciones) para automatizar tus tareas recurrentes. 4.8★, 807 reseñas.'}
+      {pago:true, t:'OpenAI GPTs: Creating Your Own Custom AI Assistants', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/openai-custom-gpts', d:'Para llegar lejos: crea un GPT propio (instrucciones, conocimiento, acciones) para automatizar tus tareas recurrentes. 4.8★, 807 reseñas.'}
     ]
   },
   investigar:{
     _def:[
       {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: pedir mejor y obtener información útil y confiable. Por Andrew Ng.'},
-      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
+      {pago:true, t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
     ],
     claude:[
       {t:'AI Capabilities and Limitations', prov:'Anthropic', url:'https://anthropic.skilljar.com/ai-capabilities-and-limitations', d:'Para investigar con Claude: saber cuándo confiar en la IA y cuándo verificar antes de decidir.'},
-      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
+      {pago:true, t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
     ],
     gemini:[
-      {t:'AI for Research and Insights', prov:'Google · Coursera', url:'https://www.coursera.org/learn/google-ai-for-research-and-insights', d:'Para investigar con Gemini: usar Deep Research y Notebook para sintetizar fuentes en un informe. Curso oficial de Google.'},
-      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
+      {pago:true, t:'AI for Research and Insights', prov:'Google · Coursera', url:'https://www.coursera.org/learn/google-ai-for-research-and-insights', d:'Para investigar con Gemini: usar Deep Research y Notebook para sintetizar fuentes en un informe. Curso oficial de Google.'},
+      {pago:true, t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★, neutral entre herramientas.'}
     ],
     chatgpt:[
       {t:'Deep Research con ChatGPT', prov:'OpenAI Academy (oficial)', url:'https://academy.openai.com/public/videos/deep-research-2025-03-11', d:'Para investigar con ChatGPT: usar Deep Research para reunir y sintetizar fuentes con citas verificables. Recurso oficial de OpenAI.'},
-      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★.'}
+      {pago:true, t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda, matrices de decisión y due diligence para líderes. 4.7★.'}
     ],
     perplexity:[
-      {t:'Perplexity AI: Comprehensive Guide to Generative AI', prov:'Coursera', url:'https://www.coursera.org/learn/perplexity-ai-comprehensive-guide-to-generative-ai', d:'Para aplicarlo: 6 módulos de investigación de negocio con Perplexity — mercado, competencia y planificación. Sin API.'},
-      {t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda y matrices de decisión para due diligence y entrada a mercados. 4.7★.'}
+      {pago:true, t:'Perplexity AI: Comprehensive Guide to Generative AI', prov:'Coursera', url:'https://www.coursera.org/learn/perplexity-ai-comprehensive-guide-to-generative-ai', d:'Para aplicarlo: 6 módulos de investigación de negocio con Perplexity — mercado, competencia y planificación. Sin API.'},
+      {pago:true, t:'Generative AI Deep Research for Leaders', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/ai-deep-research-for-leaders', d:'Para decidir: investigación profunda y matrices de decisión para due diligence y entrada a mercados. 4.7★.'}
     ]
   },
   app:{
     _def:[
-      {t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
+      {pago:true, t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
       {t:'Build apps in Google AI Studio', prov:'Google (oficial)', url:'https://ai.google.dev/gemini-api/docs/aistudio-build-mode', d:'Para construir: describe tu app en lenguaje natural y la IA la genera. Sin código ni plataformas externas.'}
     ],
     claude:[
-      {t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
+      {pago:true, t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
       {t:'Crear apps con Claude Artifacts', prov:'Claude Academy (Anthropic)', url:'https://academy.claude.com/tutorials/prototype-ai-powered-apps-with-claude-artifacts', d:'Para construir: describe el problema, deja que Claude te entreviste y arme la app como Artifact; itera y compártela. Tutorial oficial, sin código.'}
     ],
     gemini:[
-      {t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
+      {pago:true, t:'Introduction to Front-End Development', prov:'Meta · Coursera', url:'https://www.coursera.org/learn/introduction-to-front-end-development', d:'Para entender: cómo funciona la web y qué es el front (lo que se ve) y el back (lo que procesa). Empieza por el Módulo 1 (conceptos, sin código); se audita gratis. 4.8★, +560k. Subtítulos en español.'},
       {t:'Build apps in Google AI Studio', prov:'Google (oficial)', url:'https://ai.google.dev/gemini-api/docs/aistudio-build-mode', d:'Para construir: describe tu app en lenguaje natural y Gemini la genera en AI Studio. Sin código ni plataformas externas.'}
     ]
   },
   cyber:{
     _def:[
-      {t:'Microsoft Enterprise AI Governance, Ethics & Security', prov:'Microsoft · Coursera', url:'https://www.coursera.org/professional-certificates/microsoft-enterprise-ai-governance-ethics-and-security', d:'Para aplicarlo: qué datos compartir o no, reducir exposición y operar marcos (NIST, ISO 42001). Sin programar.'},
-      {t:'Governance, Policy & Emerging Regulation', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/generative-ai-governance-policy-and-emerging-regulation', d:'Para gobernar: decidir frente a la regulación emergente (UE, EE.UU.). Por Merve Hickok, referente mundial. 4.7★.'}
+      {pago:true, t:'Microsoft Enterprise AI Governance, Ethics & Security', prov:'Microsoft · Coursera', url:'https://www.coursera.org/professional-certificates/microsoft-enterprise-ai-governance-ethics-and-security', d:'Para aplicarlo: qué datos compartir o no, reducir exposición y operar marcos (NIST, ISO 42001). Sin programar.'},
+      {pago:true, t:'Governance, Policy & Emerging Regulation', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/generative-ai-governance-policy-and-emerging-regulation', d:'Para gobernar: decidir frente a la regulación emergente (UE, EE.UU.). Por Merve Hickok, referente mundial. 4.7★.'}
     ]
   }
 };
@@ -882,13 +882,25 @@ function cursoPath(){
   var rest = (s && bank[s.id]) || bank._def || [];
   return [fund].concat(rest);
 }
-function cursoEntry(){ var e=entryIndex(); return e>2?2:e; } // 0 Fundamentos, 1 Aplicado, 2 Avanzado
+/* Índice del curso que REGALAMOS. Parte en el punto de entrada de la ruta, pero si
+   ese curso es gratis, movemos el regalo a un curso PAGADO de la misma ruta (así el
+   regalo siempre tiene valor): primero buscamos uno pagado más avanzado y, si no hay,
+   uno anterior. Si ninguno es pagado, se queda en el de entrada. */
+function cursoEntry(){
+  var path=cursoPath(), e=entryIndex(), i=e>2?2:e;
+  if(path[i] && path[i].pago) return i;                                 // el de entrada ya es pagado
+  for(var j=i+1;j<path.length;j++){ if(path[j]&&path[j].pago) return j; } // prefiere uno más avanzado
+  for(var k=i-1;k>=0;k--){ if(path[k]&&path[k].pago) return k; }          // si no, uno anterior
+  return i;                                                             // ninguno pagado: deja el de entrada
+}
 
 function cursoRecomendado(){
-  var path=cursoPath(), i=cursoEntry(), c=path[i]||path[0];
-  var porque = i===0
-    ? 'Es el punto de partida de tu ruta: te da las bases para trabajar con '+ (stack()?stack().nombre:'IA') +' con confianza.'
-    : 'Como ya manejas lo básico, partimos directo en este y te dejamos la ruta para seguir avanzando.';
+  var path=cursoPath(), e0=entryIndex(), start=e0>2?2:e0, i=cursoEntry(), c=path[i]||path[0];
+  var porque = i===start
+    ? (i===0
+        ? 'Es el punto de partida de tu ruta: te da las bases para trabajar con '+ (stack()?stack().nombre:'IA') +' con confianza.'
+        : 'Como ya manejas lo básico, partimos directo en este y te dejamos la ruta para seguir avanzando.')
+    : 'El curso de tu punto de entrada es gratuito, así que regalamos este de la misma ruta, que sí es pagado, para que tu regalo tenga valor real.';
   return {titulo:c.t, prov:c.prov, url:c.url, desc:'Curso de cortesía', porque:porque, idx:i};
 }
 
