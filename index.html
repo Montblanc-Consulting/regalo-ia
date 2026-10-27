@@ -98,7 +98,7 @@
 
   /* ===== Portada editorial (estilo colección) ===== */
   .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,4.5vw,92px);align-items:center;
-    min-height:calc(100vh - 118px);
+    min-height:max(540px, 58vh);
     width:min(1440px, calc(100vw - 48px));
     margin-inline:calc(50% - min(720px, (100vw - 48px)/2)) auto}
   @media (max-width:720px){ .hero{grid-template-columns:1fr;gap:24px;min-height:0;padding-top:6px;width:auto;margin-inline:0} }
@@ -190,7 +190,7 @@
   .stepper.on-dark .pline{background:var(--navy-line)} .stepper.on-dark .pline.on{background:rgba(255,255,255,.75)}
 
   /* Banda de citas de apertura */
-  .quotes-band{margin:46px 0 8px;border-top:1px solid var(--line);padding-top:28px}
+  .quotes-band{margin:26px 0 8px;border-top:1px solid var(--line);padding-top:24px}
   .qb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
   @media (max-width:760px){ .qb-grid{grid-template-columns:1fr} }
   .qcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin:0;
@@ -406,6 +406,48 @@
   .rail-step.dim .rail-why{color:var(--muted)}
   .rail-go{font-size:12.5px;font-weight:600;color:var(--accent-ink);margin-top:auto;padding-top:8px}
   .rail-step.gift .rail-go{color:var(--navy)}
+  /* Roadmap por etapas (lo que vas a poder hacer) */
+  .etapas{display:flex;flex-direction:column;gap:10px;margin:14px 0 4px}
+  .etapa{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+  .etapa.done{opacity:.72;background:var(--surface-2)}
+  .etapa.here{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.10),rgba(40,66,103,.03));box-shadow:0 10px 24px -18px rgba(34,58,94,.5)}
+  .et-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--muted)}
+  .etapa.done .et-n{background:var(--accent-soft);color:var(--accent-ink)}
+  .etapa.here .et-n{background:var(--navy);color:#fff}
+  .et-body{display:flex;flex-direction:column;gap:2px}
+  .et-body>b{font-size:14.5px;color:var(--ink)}
+  .et-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:6px;padding:2px 7px;margin:3px 0}
+  .et-tag.base{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .et-d{font-size:13px;color:var(--muted);line-height:1.45}
+  .et-h{font-size:12px;color:var(--accent-ink);font-weight:600;margin-top:2px}
+  /* Elegir regalo (3 opciones) */
+  .gopts{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+  .gopt{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;cursor:pointer;background:var(--surface);transition:border-color .12s,background .12s}
+  .gopt:hover{border-color:var(--accent)}
+  .gopt input{position:absolute;opacity:0;width:0;height:0}
+  .gopt.on{border-color:var(--navy);background:linear-gradient(170deg,rgba(40,66,103,.09),rgba(40,66,103,.02))}
+  .go-ic{flex:none;font-size:18px;line-height:1.2}
+  .go-tx{display:flex;flex-direction:column;gap:1px;flex:1}
+  .go-tx b{font-size:13.5px;color:var(--ink)}
+  .go-tx small{font-size:12px;color:var(--muted);line-height:1.4}
+  .go-mark{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--line);margin-top:2px;position:relative}
+  .gopt.on .go-mark{border-color:var(--navy)}
+  .gopt.on .go-mark::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--navy)}
+  .agenda-alt{font-size:12.5px;color:var(--muted);margin:12px 0 0}
+  .agenda-alt a{color:var(--accent-ink);font-weight:600;text-decoration:none}
+  .agenda-alt a:hover{text-decoration:underline}
+  /* ¿Y después? */
+  .siguiente{margin-top:16px}
+  .sig-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+  @media(max-width:620px){.sig-grid{grid-template-columns:1fr}}
+  .sig-card{display:flex;flex-direction:column;gap:2px;border:1.5px solid var(--line);border-radius:14px;padding:14px;text-decoration:none;color:inherit;background:var(--surface);transition:transform .12s,box-shadow .12s}
+  .sig-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px -16px var(--shadow)}
+  .sig-ic{font-size:20px;line-height:1.1}
+  .sig-et{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-top:4px}
+  .sig-t{font-size:14.5px;line-height:1.2;color:var(--ink)}
+  .sig-prov{font-size:12px;color:var(--muted)}
+  .sig-d{font-size:12.5px;line-height:1.4;color:var(--ink);margin-top:5px}
+  .sig-go{font-size:12.5px;font-weight:600;color:var(--accent-ink);margin-top:auto;padding-top:8px}
   .form-card{border-color:var(--gift)}
   .btn.ready{background:var(--gift);animation:pulseGift 1.6s ease-in-out infinite}
   @keyframes pulseGift{0%{box-shadow:0 0 0 0 rgba(169,119,47,.5)}70%{box-shadow:0 0 0 14px rgba(169,119,47,0)}100%{box-shadow:0 0 0 0 rgba(169,119,47,0)}}
@@ -554,7 +596,7 @@ var IC = {
 };
 
 var TEMAS = [
-  {id:'sistematizar', titulo:'Sistematizar mi trabajo con IA', corto:'sistematizar',
+  {id:'sistematizar', titulo:'Sistematizar mi trabajo', corto:'sistematizar',
    desc:'Correos, minutas, reportes, seguimientos: convierte lo repetitivo en flujos donde la IA hace el 80% y tú solo revisas y apruebas.',
    prompt:'Eres mi jefe de gabinete. Quiero delegarte una tarea que repito cada semana y que me quita tiempo.\n\nLa tarea es: [describe en 2–3 líneas qué haces, con qué información partes y qué resultado esperas].\n\nAntes de proponer nada, hazme las preguntas que necesites para entenderla a fondo. Luego diseña un flujo paso a paso en el que tú hagas el grueso del trabajo y yo solo revise y apruebe los puntos clave. Señálame en qué pasos necesitas una decisión mía y entrégame una primera versión lista para usar.',
    resumen:'Tu primer flujo funcionando en ~4 horas. Luego profundizas a tu ritmo.',
@@ -564,7 +606,7 @@ var TEMAS = [
      {t:'Plantillas y biblioteca',d:'Guarda tus mejores prompts como plantillas y encadena 2–3 tareas en una sola conversación.',h:'2 h'},
      {t:'Automatización real',d:'Conecta la IA a tus herramientas (correo, calendario, documentos) con Proyectos, GPTs o agentes.',h:'Opcional'}
    ]},
-  {id:'investigar', titulo:'Investigar y decidir con IA', corto:'investigar',
+  {id:'investigar', titulo:'Investigar y decidir', corto:'investigar',
    desc:'Compara proveedores, estudia un mercado o resume un informe de 80 páginas en una. La IA reúne y contrasta; tú decides mejor y más rápido.',
    prompt:'Eres mi analista de confianza. Necesito tomar una decisión y quiero una base sólida, no una lista de enlaces.\n\nLa decisión es: [describe la decisión y su contexto en 2–3 líneas].\n\nPrimero dime qué información necesitas de mí para hacer un buen análisis. Luego entrégame un resumen ejecutivo de una página con los hallazgos clave, los principales riesgos, y 3 opciones con sus pros y contras y tu recomendación. Cita tus fuentes y deja claro cuándo algo es un supuesto y no un dato.',
    resumen:'Tu primer brief de decisión en ~3 horas. El resto, a tu ritmo.',
@@ -574,7 +616,7 @@ var TEMAS = [
      {t:'Research sistemático',d:'Compara proveedores, mercados o escenarios usando marcos (FODA, matrices de decisión).',h:'2 h'},
      {t:'Deep Research y verificación',d:'Investigación profunda multi-fuente y cómo auditar lo que la IA te entrega antes de decidir.',h:'Opcional'}
    ]},
-  {id:'app', titulo:'Crear una app simple con IA', corto:'crear apps',
+  {id:'app', titulo:'Crear una app simple', corto:'crear apps',
    desc:'Una calculadora, un formulario o un tablero a medida para compartir con tu equipo o tus clientes: crea herramientas sin programar. Tú describes qué necesitas y la IA escribe el código.',
    prompt:'Quiero crear una aplicación simple y no sé programar. Serás a la vez mi equipo de desarrollo y mi profesor.\n\nLa idea es: [describe en 2–3 líneas qué problema resuelve y para quién].\n\nEmpieza proponiéndome la versión más simple que ya sea útil (un MVP) y pregúntame lo que necesites para acotarla. Cuando estemos de acuerdo, guíame paso a paso: dime qué debo instalar o abrir, y entrégame el código por partes, explicándome en palabras simples qué hace cada una antes de seguir con la siguiente.\n\nPara practicar sin exponer información, partamos con una demo en un solo archivo HTML que corra en mi computador; no uses datos reales ni sensibles.',
    resumen:'Tu primer prototipo en ~5 horas. Publicarlo, cuando quieras.',
@@ -584,7 +626,7 @@ var TEMAS = [
      {t:'Front y back intermedio',d:'Agrega datos que se guardan y conéctala con otras herramientas (por ejemplo, Supabase como base de datos).',h:'3 h'},
      {t:'Publícala',d:'Ponla en línea con Vercel para compartirla por link con tu equipo o tus clientes.',h:'Opcional'}
    ]},
-  {id:'cyber', titulo:'Ciberseguridad y riesgo con IA', corto:'ciberseguridad',
+  {id:'cyber', titulo:'Ciberseguridad y riesgo', corto:'ciberseguridad',
    desc:'Entiende qué puedes y qué no debes hacer con la IA y tus datos, y adopta buenas prácticas para proteger a tu equipo. Reduce tu riesgo sin ser experto técnico.',
    prompt:'Eres mi asesor de ciberseguridad y me hablas como a un ejecutivo, sin tecnicismos.\n\nContexto: [describe en 2–3 líneas a qué se dedica tu equipo y con qué información y herramientas trabajan].\n\nHazme las preguntas necesarias para entender cómo manejamos datos, accesos y proveedores. Luego entrégame un diagnóstico de riesgos priorizado (alto / medio / bajo) y, para cada riesgo, una acción concreta que podamos tomar esta semana. Termina con las 3 cosas más importantes que debería resolver primero.',
    resumen:'Tu diagnóstico de riesgo en ~3,5 horas. La gestión continua, a tu ritmo.',
@@ -735,11 +777,10 @@ var GIFT_LIMIT = 2;
    La ruta de cada cliente = Fundamentos (según su herramienta) + Aplicado + Avanzado (según su tema).
    El regalo es el curso en su punto de entrada; los demás quedan como ruta para seguir avanzando. */
 var CURSO_FUND = {
-  claude:    {t:'Claude Academy', prov:'Anthropic', costo:'Gratis', url:'https://academy.claude.com', d:'Para empezar con el pie derecho: las bases de trabajar con Claude (dar contexto, estructurar prompts, usar Proyectos).'},
-  chatgpt:   {t:'OpenAI Academy', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com', d:'Para empezar con el pie derecho: sacarle partido a ChatGPT desde cero, con confianza.'},
-  codex:     {t:'OpenAI Academy · Build with AI', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com', d:'Para empezar con el pie derecho: construir y automatizar con las herramientas de OpenAI.'},
-  gemini:    {t:'Gemini: Beginner to Advanced', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/gemini-generative-ai-beginner-to-advanced-masterclass/', d:'Para empezar con el pie derecho: dominar Gemini de lo esencial a lo avanzado.'},
-  perplexity:{t:'Perplexity 101 — Primeros pasos', prov:'Perplexity', costo:'Gratis', url:'https://www.perplexity.ai/hub', d:'Para empezar con el pie derecho: investigar con fuentes citadas usando Perplexity.'}
+  claude:    {t:'AI Fluency: Framework & Foundations', prov:'Anthropic · Coursera', url:'https://www.coursera.org/learn/ai-fluency-framework-foundations', d:'Para partir bien: el marco 4D de Anthropic para pensar y delegar en Claude, no sintaxis técnica. 4.8★.'},
+  chatgpt:   {t:'Prompt Engineering for ChatGPT', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/prompt-engineering', d:'Para partir bien: cómo pedirle a ChatGPT y obtener buenos resultados. 4.8★, de los más tomados de Coursera.'},
+  gemini:    {t:'Google AI Essentials', prov:'Google · Coursera', url:'https://www.coursera.org/specializations/ai-essentials-google', d:'Para partir bien: curso oficial de Google para no-técnicos, con Gemini como eje. 4.8★, +2M alumnos.'},
+  perplexity:{t:'Perplexity — Primeros pasos (oficial)', prov:'Perplexity', url:'https://www.perplexity.ai/hub', d:'Para partir bien: guía oficial para investigar con fuentes citadas. Es la herramienta más simple de aprender.'}
 };
 /* Aplicado + Avanzado por tema. Afinados por herramienta: NUNCA se recomienda
    una IA distinta a la que eligió el usuario. _def = versión neutral (sirve con
@@ -748,45 +789,59 @@ var CURSO_FUND = {
 var CURSO_TEMA = {
   sistematizar:{
     _def:[
-      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para dar el primer paso: convertir cada tarea que repites en un prompt reutilizable.'},
-      {t:'Multi-AI Agent Systems (crewAI)', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/short-courses/multi-ai-agent-systems-with-crewai/', d:'Para llegar lejos: automatización real, con agentes que encadenan y corren tu flujo solos.'}
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: convertir cada tarea que repites en un prompt reutilizable (sirve con cualquier IA). Por Andrew Ng.'},
+      {t:'Zapier AI Builder Path', prov:'Zapier Academy', url:'https://learn.zapier.com/building-ai-agents', d:'Para llegar lejos: montar flujos no-code donde la IA hace el 80% y tú apruebas, conectada a tus apps reales.'}
     ]
   },
   investigar:{
     _def:[
-      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', costo:'Gratis', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para tu primera investigación: pedir mejor y obtener información útil y confiable.'},
-      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para cerrar el ciclo: decidir con criterio, cuidando sesgos y usando marcos de decisión.'}
+      {t:'AI Prompting for Everyone', prov:'DeepLearning.AI', url:'https://www.deeplearning.ai/courses/ai-prompting-for-everyone/', d:'Para aplicarlo: pedir mejor y obtener información útil y confiable. Por Andrew Ng.'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para decidir: razonar con criterio, cuidar sesgos y usar marcos de decisión.'}
     ],
     claude:[
-      {t:'AI Fluency: Framework & Foundations', prov:'Anthropic', costo:'Gratis', url:'https://anthropic.skilljar.com/ai-fluency-framework-foundations', d:'Para investigar bien con Claude: discernir y verificar lo que la IA te entrega.'},
-      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para cerrar el ciclo: decidir con criterio, cuidando sesgos y usando marcos de decisión.'}
+      {t:'AI Capabilities and Limitations', prov:'Anthropic', url:'https://anthropic.skilljar.com/ai-capabilities-and-limitations', d:'Para investigar con Claude: saber cuándo confiar en la IA y cuándo verificar antes de decidir.'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para decidir: razonar con criterio, cuidar sesgos y usar marcos de decisión.'}
     ],
     gemini:[
-      {t:'Google AI for Research and Insights', prov:'Google · Coursera', costo:'Gratis', url:'https://www.coursera.org/learn/google-ai-for-research-and-insights', d:'Para una investigación real con Gemini: usar Deep Research y sintetizar fuentes en un informe.'},
-      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', costo:'Pagado', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para cerrar el ciclo: decidir con criterio, cuidando sesgos y usando marcos de decisión.'}
+      {t:'AI for Research and Insights', prov:'Google · Coursera', url:'https://www.coursera.org/learn/google-ai-for-research-and-insights', d:'Para investigar con Gemini: usar Deep Research y Notebook para sintetizar fuentes en un informe. Curso oficial de Google.'},
+      {t:'Leveraging GenAI to Develop Critical Thinking Skills', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/leveraging-genai-to-develop-critical-thinking-skills', d:'Para decidir: razonar con criterio, cuidar sesgos y usar marcos de decisión.'}
     ],
     chatgpt:[
-      {t:'OpenAI Academy: Applied AI Foundations', prov:'OpenAI', costo:'Gratis', url:'https://academy.openai.com', d:'Para aplicarlo a tu trabajo: usar ChatGPT en tareas reales de análisis e investigación.'},
-      {t:'ChatGPT Pro: OpenAI Deep Research', prov:'Pluralsight', costo:'Pagado', url:'https://www.pluralsight.com/courses/chatgpt-pro-openai-deep-research', d:'Para llegar lejos: investigaciones autónomas multi-paso con Deep Research.'}
+      {t:'ChatGPT Advanced Data Analysis', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/learn/chatgpt-advanced-data-analysis', d:'Para investigar con ChatGPT: analizar documentos, PDFs y planillas, y detectar errores antes de usar el resultado.'},
+      {t:'Generative AI Strategic Leader', prov:'Vanderbilt University · Coursera', url:'https://www.coursera.org/specializations/generative-ai-strategic-leader', d:'Para decidir: usar la investigación con IA para decisiones estratégicas e inteligencia competitiva.'}
     ],
     perplexity:[
-      {t:'Intro a la Investigación con Perplexity', prov:'Codecademy', costo:'Gratis', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity', d:'Para tu primera investigación: trabajar con fuentes citadas y los modos Pro/Deep Research.'},
-      {t:'Mastering Perplexity AI', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/mastering-perplexity-ai-smarter-research-better-results/', d:'Para llegar lejos: dominio avanzado para sacarle el máximo a Perplexity.'}
+      {t:'Intro a la Investigación con Perplexity', prov:'Codecademy', url:'https://www.codecademy.com/learn/intro-to-ai-research-with-perplexity', d:'Para investigar con Perplexity: fuentes citadas, modos de foco y Deep Research, organizando hallazgos.'},
+      {t:'Perplexity — Advanced Features', prov:'Pluralsight', url:'https://www.pluralsight.com/courses/perplexity-advanced-features', d:'Para llegar lejos: elegir modelos y armar flujos de research multi-paso dentro de Perplexity.'}
     ]
   },
   app:{
     _def:[
-      {t:'AI Foundations: construir y publicar apps', prov:'Replit Learn', costo:'Gratis', url:'https://learn.replit.com/', d:'Para pasar a la acción: construir y publicar tu primera app funcional con IA.'},
-      {t:'Vibe Coding for Everyone', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/vibe-coding-for-beginners-ai-programming-for-non-developers/', d:'Para llegar lejos: apps más ambiciosas, con datos que se guardan e integraciones.'}
+      {t:'Vibe Coding 101 with Replit', prov:'DeepLearning.AI + Replit', url:'https://www.deeplearning.ai/short-courses/vibe-coding-101-with-replit/', d:'Para pasar a la acción: construir y publicar tu primera app con el método correcto. Por Andrew Ng y el Presidente de Replit.'},
+      {t:'Building your first app with Replit', prov:'Replit · Coursera', url:'https://www.coursera.org/learn/building-your-first-app-with-replit', d:'Para llegar lejos: curso oficial de Replit para armar y publicar tu app por link, en lenguaje natural.'}
     ]
   },
   cyber:{
     _def:[
-      {t:'AI Governance Foundation', prov:'SafeShield', costo:'Gratis', url:'https://www.safeshield.cloud/free-training-introduction-to-ai-governance', d:'Para tu diagnóstico: el lente básico de riesgo y gobernanza sobre tu uso de IA.'},
-      {t:'Master AI Governance: NIST & ISO 42001', prov:'Udemy', costo:'Pagado ≤US$30', url:'https://www.udemy.com/course/master-ai-governance-nist-ai-rmf-iso-42001/', d:'Para gestión continua: adoptar marcos reconocidos (NIST AI RMF, ISO 42001).'}
+      {t:'Microsoft Enterprise AI Governance, Ethics & Security', prov:'Microsoft · Coursera', url:'https://www.coursera.org/professional-certificates/microsoft-enterprise-ai-governance-ethics-and-security', d:'Para aplicarlo: qué datos compartir o no, reducir exposición y operar marcos (NIST, ISO 42001). Sin programar.'},
+      {t:'Governance, Policy & Emerging Regulation', prov:'U. Michigan · Coursera', url:'https://www.coursera.org/learn/generative-ai-governance-policy-and-emerging-regulation', d:'Para gobernar: decidir frente a la regulación emergente (UE, EE.UU.). Por Merve Hickok, referente mundial. 4.7★.'}
     ]
   }
 };
+/* "¿Y después?" — recursos accesibles y verificados para seguir (nivel ejecutivo). */
+var SIGUIENTE = [
+  {ic:'🎓', et:'Curso', t:'AI for Business', prov:'Wharton · Coursera', url:'https://www.coursera.org/specializations/ai-for-business-wharton', d:'Para líderes que deciden cómo aplicar IA en el negocio, sin programar. Se puede auditar gratis.'},
+  {ic:'📖', et:'Libro', t:'Co-Intelligence', prov:'Ethan Mollick', url:'https://www.penguinrandomhouse.com/books/741805/co-intelligence-by-ethan-mollick/', d:'El libro de referencia para trabajar con IA como copiloto. También en español.'},
+  {ic:'📬', et:'Al día', t:'One Useful Thing', prov:'Newsletter de Ethan Mollick', url:'https://www.oneusefulthing.org/', d:'Lo que de verdad sirve para trabajar con IA, en lenguaje ejecutivo. Gratis.'}
+];
+var SIGUIENTE_CYBER = [
+  {ic:'🧭', et:'Marco', t:'NIST AI Risk Management Framework', prov:'NIST', url:'https://www.nist.gov/itl/ai-risk-management-framework', d:'El marco de referencia (gratis) para gestionar el riesgo de IA en la organización.'},
+  {ic:'📬', et:'Al día', t:'IAPP AI Governance Center', prov:'IAPP', url:'https://iapp.org/about/ai-governance-center/', d:'Newsletter semanal para seguir la regulación de IA (UE, EE.UU.). Gratis.'}
+];
+function siguienteRecursos(){
+  if(state.tema==='cyber') return [SIGUIENTE[0], SIGUIENTE_CYBER[0], SIGUIENTE_CYBER[1]];
+  return SIGUIENTE;
+}
 var NIVEL_CURSO = ['Fundamentos','Aplicado','Avanzado'];
 
 /* Ruta de 3 cursos (Fundamentos según herramienta + Aplicado + Avanzado del tema,
@@ -805,7 +860,7 @@ function cursoRecomendado(){
   var porque = i===0
     ? 'Es el punto de partida de tu ruta: te da las bases para trabajar con '+ (stack()?stack().nombre:'IA') +' con confianza.'
     : 'Como ya manejas lo básico, partimos directo en este y te dejamos la ruta para seguir avanzando.';
-  return {titulo:c.t, prov:c.prov, url:c.url, costo:c.costo, desc:'Curso de cortesía', porque:porque, idx:i};
+  return {titulo:c.t, prov:c.prov, url:c.url, desc:'Curso de cortesía', porque:porque, idx:i};
 }
 
 function giftPool(temaId, stackId){
@@ -1021,34 +1076,30 @@ function viewResultado(){
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), usaTema=temaUsaNivelTema();
   var crRecap=cursoRecomendado();
   var nivelLabel=(usaTema&&ntm?ntm.nombre:nia.nombre).toLowerCase();
-  // Recap en prosa: "dado que escogiste X, te regalamos Y" (sin pastillas)
-  var recap='<p class="road-recap">Como tu foco es <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b> '+
-    'y hoy partes de un nivel <b>'+esc(nivelLabel)+'</b>, tu regalo es <b>'+esc(crRecap.titulo)+'</b> '+
-    '— el curso de nivel <b>'+esc(NIVEL_CURSO[crRecap.idx])+'</b> donde arranca tu ruta. '+
-    'Los demás quedan como referencia para seguir avanzando.</p>'+
+  // Recap en prosa (el regalo ahora es una elección, no un curso único)
+  var recap='<p class="road-recap">Esta es tu ruta para <b>'+esc(t.corto||t.titulo.toLowerCase())+'</b> con <b>'+esc(s.nombre)+'</b>, '+
+    'partiendo de un nivel <b>'+esc(nivelLabel)+'</b>. Abajo verás, paso a paso, <b>lo que vas a poder hacer</b> y el <b>primer prompt</b> para arrancar hoy. '+
+    'Y eliges cómo quieres que te acompañemos: con un curso, con una licencia de Claude para probar, o con una hora de un consultor.</p>'+
     '<p class="road-recap-edit">¿Quieres cambiar una respuesta? Toca los números de arriba.</p>';
   var fit=recomendacionStack(t.id, s.id);
   var bloqueFit = fit ? '<div class="note"><b>Sugerencia:</b> '+esc(fit)+'</div>' : '';
 
-  // Roadmap = ruta de cursos en horizontal (el regalo destacado en azul Montblanc)
+  // Roadmap POR ETAPAS: lo que la persona podrá ir haciendo (de lo simple a lo avanzado).
   var cr=cursoRecomendado();
-  var path=cursoPath(), ei=cursoEntry();
-  var railHtml=path.map(function(c,i){
-    var cls = i===ei?'rail-step gift':'rail-step dim';
-    var badge = i===ei?'Tu regalo' : (i<ei?'Base':'Siguiente');
-    return '<a class="'+cls+'" href="'+esc(c.url)+'" target="_blank" rel="noopener">'+
-      '<span class="rail-top"><span class="rail-n">'+(i+1)+'</span><span class="rail-badge">'+badge+'</span></span>'+
-      '<span class="rail-nivel">'+esc(NIVEL_CURSO[i])+'</span>'+
-      '<span class="rail-t">'+esc(c.t)+'</span>'+
-      '<span class="rail-meta">'+esc(c.prov)+'</span>'+
-      (c.d?'<span class="rail-why">'+esc(c.d)+'</span>':'')+
-      '<span class="rail-go">Ver curso ↗</span></a>';
+  var start=entryIndex();
+  var etapasHtml=(t.etapas||[]).map(function(e,i){
+    var cls=i<start?'etapa done':(i===start?'etapa here':'etapa');
+    var tag=i===start?'<span class="et-tag">Empiezas aquí</span>':(i<start?'<span class="et-tag base">Ya lo manejas</span>':'');
+    return '<div class="'+cls+'"><span class="et-n">'+(i+1)+'</span>'+
+      '<div class="et-body"><b>'+esc(e.t)+'</b>'+tag+
+      '<span class="et-d">'+esc(e.d)+'</span>'+
+      (e.h?'<span class="et-h">⏱ '+esc(e.h)+'</span>':'')+'</div></div>';
   }).join('');
-  var bloqueRail='<div class="block"><span class="kicker" style="color:var(--gift-ink)">El regalo de Montblanc</span>'+
-    '<h3>Tu roadmap de aprendizaje</h3>'+
-    '<p class="sub">Tus pasos, de izquierda a derecha. Te regalamos el curso destacado en <b style="color:var(--navy)">azul</b>, justo en el nivel donde comienzas; los demás quedan como referencia para seguir avanzando.</p>'+
-    '<div class="course-rail">'+railHtml+'</div>'+
-    '<p class="sub" style="margin-top:12px"><b>Por qué este regalo:</b> '+esc(cr.porque)+'</p></div>';
+  var bloqueEtapas='<div class="block"><span class="kicker">Tu roadmap, paso a paso</span>'+
+    '<h3>Lo que vas a poder hacer</h3>'+
+    '<p class="sub">De lo simple a lo avanzado. No necesitas saberlo todo hoy: partes donde estás y avanzas a tu ritmo. Lo valioso es entender qué se puede lograr y saber qué pedir.</p>'+
+    '<div class="etapas">'+etapasHtml+'</div>'+
+    (t.resumen?'<p class="sub" style="margin-top:12px"><b>⏱ </b>'+esc(t.resumen)+'</p>':'')+'</div>';
 
   // Prompt (con aviso para apps)
   var avisoApp = t.id==='app'
@@ -1064,21 +1115,47 @@ function viewResultado(){
       '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>'+
       '<span>Copiar prompt</span></button></div>';
 
-  // Formulario a la derecha (solo nombre y correo) + botón que brilla al completar
-  var saberMas='<div class="more"><h4>¿Conversamos?</h4>'+
-    '<p>Si quieres llevar esta ruta a tu equipo o explorar una herramienta a tu medida, en Montblanc te acompañamos.</p></div>';
+  // Regalo = elección: curso para profundizar / licencia de Claude / hora con consultor.
+  function gopt(val,ic,ttl,desc,chk){
+    return '<label class="gopt'+(chk?' on':'')+'"><input type="radio" name="regalo" value="'+val+'"'+(chk?' checked':'')+'>'+
+      '<span class="go-ic" aria-hidden="true">'+ic+'</span>'+
+      '<span class="go-tx"><b>'+ttl+'</b><small>'+desc+'</small></span>'+
+      '<span class="go-mark" aria-hidden="true"></span></label>';
+  }
+  var opcionesRegalo =
+    gopt('curso','🎓','Un curso para profundizar', esc(cr.titulo)+' — aprende estructurado, a tu ritmo.', true)+
+    gopt('licencia','⚡','Una licencia de Claude', 'Pruébala tú mismo con tu caso real; nosotros coordinamos la entrega.', false)+
+    gopt('consultor','🧭','Una hora con un consultor', 'Sesión 1:1 con Montblanc para arrancar con foco en tu caso.', false);
   var bloqueForm='<aside class="road-side"><div class="block form-card">'+
-    '<span class="kicker" style="color:var(--gift-ink)">Reclama tu regalo</span>'+
-    '<h3>Obtén tu curso de cortesía</h3>'+
-    '<p class="sub">Déjanos tu nombre y correo; coordinamos la entrega a tu correo.</p>'+
+    '<span class="kicker" style="color:var(--gift-ink)">Tu regalo de Montblanc</span>'+
+    '<h3>Elige cómo quieres partir</h3>'+
+    '<p class="sub">Escoge una opción y déjanos tus datos. Te contactamos para coordinar la entrega.</p>'+
     '<form class="form" id="claimForm" novalidate>'+
+      '<div class="gopts">'+opcionesRegalo+'</div>'+
       '<div class="field"><label for="f-nombre">Nombre y apellido</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Tu nombre"></div>'+
       '<div class="field"><label for="f-email">Correo</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="tucorreo@empresa.com"></div>'+
       '<div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden"><label>No completar este campo<input id="f-web" name="website" tabindex="-1" autocomplete="off"></label></div>'+
       '<div id="formMsg"></div>'+
-      '<button class="btn full" id="submitBtn" type="submit">Obtener mi regalo</button>'+
-      '<p class="consent">Usaremos tus datos solo para coordinar la entrega de tu curso. Montblanc Consulting.</p>'+
-    '</form></div>'+saberMas+'</aside>';
+      '<button class="btn full" id="submitBtn" type="submit">Quiero mi regalo</button>'+
+      '<p class="consent">Usaremos tus datos solo para coordinar la entrega de tu regalo. Montblanc Consulting.</p>'+
+    '</form>'+
+    '<p class="agenda-alt">¿Prefieres hablar ahora? <a id="agendaLink" href="#agendar" data-placeholder="1">Agenda una hora con un consultor ↗</a></p>'+
+    '</div></aside>';
+
+  // ¿Y después? (recursos para seguir, accesibles y verificados)
+  var sigHtml=siguienteRecursos().map(function(r){
+    return '<a class="sig-card" href="'+esc(r.url)+'" target="_blank" rel="noopener">'+
+      '<span class="sig-ic" aria-hidden="true">'+r.ic+'</span>'+
+      '<span class="sig-et">'+esc(r.et)+'</span>'+
+      '<b class="sig-t">'+esc(r.t)+'</b>'+
+      '<span class="sig-prov">'+esc(r.prov)+'</span>'+
+      '<span class="sig-d">'+esc(r.d)+'</span>'+
+      '<span class="sig-go">Abrir ↗</span></a>';
+  }).join('');
+  var bloqueSiguiente='<div class="block siguiente"><span class="kicker">¿Y después?</span>'+
+    '<h3>Para seguir avanzando</h3>'+
+    '<p class="sub">Cuando quieras ir más allá del regalo, estos son los recursos que recomendamos — pensados para un equipo directivo.</p>'+
+    '<div class="sig-grid">'+sigHtml+'</div></div>';
 
   // (los ejemplos de Montblanc ahora viven en la pantalla de Objetivo)
   var acciones='<div class="roadmap-actions">'+
@@ -1104,9 +1181,10 @@ function viewResultado(){
     '</header>'+
     bloqueFit+
     '<div class="road-grid">'+
-      '<div class="road-main">'+bloqueRail+bloquePrompt+'</div>'+
+      '<div class="road-main">'+bloqueEtapas+bloquePrompt+'</div>'+
       bloqueForm+
     '</div>'+
+    bloqueSiguiente+
     cierre+
   '</div>';
 }
@@ -1117,12 +1195,12 @@ function chip(k,v,go){
 }
 
 function viewExito(){
-  var cr=cursoRecomendado();
+  var reg=state.regalo || {label:cursoRecomendado().titulo};
   return '<div class="success">'+
     '<div class="seal"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></div>'+
     '<h2>Gracias. Hemos registrado tu solicitud.</h2>'+
-    '<p class="lead" style="margin:0 auto">Montblanc Consulting te contactará al correo que indicaste para coordinar la entrega de tu curso de cortesía.</p>'+
-    '<ul class="recap"><li>✦ '+esc(cr.titulo)+'</li></ul>'+
+    '<p class="lead" style="margin:0 auto">En los próximos <b>2 días hábiles</b> Montblanc Consulting te contactará al correo que indicaste para coordinar la entrega de tu regalo.</p>'+
+    '<ul class="recap"><li>✦ '+esc(reg.label)+'</li></ul>'+
     '<button type="button" class="btn" data-go="0">Volver al inicio</button></div>';
 }
 
@@ -1229,10 +1307,15 @@ async function enviar(form){
 
   var t=tema(), s=stack(), nia=nivelIA(), ntm=nivelTema(), cr=cursoRecomendado();
   var nivelTemaTxt=(temaUsaNivelTema()&&ntm)?ntm.nombre:'—';
+  var regaloVal=(form.regalo && form.regalo.value) || 'curso';
+  var regaloMap={curso:cr.titulo, licencia:'Licencia de Claude (probar la herramienta)', consultor:'Hora 1:1 con un consultor Montblanc'};
+  var regaloTxt=regaloMap[regaloVal]||cr.titulo;
+  var regaloUrl=regaloVal==='curso'?(cr.url||''):'';
+  state.regalo={tipo:regaloVal, label:regaloTxt};
   var payload={
     nombre:nombre, email:email, empresa:empresa,
     tema:t.titulo, stack:s.nombre, nivelIA:nia.nombre, nivelTema:nivelTemaTxt,
-    curso:cr.titulo, regalosTexto:cr.titulo,
+    curso:regaloTxt, regalosTexto:regaloTxt,
     fecha:new Date().toISOString(), fechaLocal:new Date().toLocaleString('es-CL')
   };
 
@@ -1260,7 +1343,7 @@ async function enviar(form){
   }
   var row={ nombre:nombre, email:email, empresa:empresa,
     tema:t.titulo, herramienta:s.nombre, nivel_ia:nia.nombre, nivel_tema:nivelTemaTxt,
-    curso:cr.titulo, url_curso:cr.url||'' };
+    curso:regaloTxt, url_curso:regaloUrl };
   try{
     var resp=await fetch(SUPA_URL.replace(/\/$/,'')+'/rest/v1/solicitudes',{
       method:'POST',
@@ -1329,7 +1412,17 @@ function bind(){
     var sbtn=document.getElementById('submitBtn');
     function chkReady(){ var ok=form.nombre.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim()); if(sbtn) sbtn.classList.toggle('ready', !!ok); }
     form.nombre.addEventListener('input', chkReady); form.email.addEventListener('input', chkReady); chkReady();
+    // resaltar la opción de regalo elegida
+    function markGopt(){ Array.prototype.forEach.call(stage.querySelectorAll('.gopt'), function(l){ var inp=l.querySelector('input'); l.classList.toggle('on', !!(inp && inp.checked)); }); }
+    Array.prototype.forEach.call(stage.querySelectorAll('.gopt input[name=regalo]'), function(r){ r.addEventListener('change', markGopt); });
+    markGopt();
   }
+  // agendar con consultor (placeholder por definir)
+  var ag=document.getElementById('agendaLink');
+  if(ag) ag.addEventListener('click', function(ev){
+    if(ag.getAttribute('data-placeholder')){ ev.preventDefault();
+      alert('El agendamiento directo con un consultor estará disponible pronto.\n\nPor ahora, elige "Una hora con un consultor" en el formulario y te contactamos para coordinar.'); }
+  });
 }
 
 function goto(step){
@@ -1339,7 +1432,7 @@ function goto(step){
   if(step>=4 && !state.nivelIA) step=3;
   if(step===4 && !temaUsaNivelTema()) step=5;              // Investigación no usa nivel del tema
   if(step>=5 && temaUsaNivelTema() && !state.nivelTema) step=4;
-  if(step===0){ state.tema=state.stack=state.nivelIA=state.nivelTema=null; state.enviado=false; }
+  if(step===0){ state.tema=state.stack=state.nivelIA=state.nivelTema=null; state.enviado=false; state.regalo=null; }
   state.step=step; render();
 }
 
