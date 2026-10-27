@@ -99,14 +99,11 @@
     background:var(--accent-soft);color:var(--accent-ink);font-size:12px;font-weight:600}
 
   /* ===== Portada editorial (estilo colección) ===== */
-  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,4.5vw,92px);align-items:center;
-    min-height:max(540px, 58vh);
-    width:min(1440px, calc(100vw - 48px));
-    margin-inline:calc(50% - min(720px, (100vw - 48px)/2)) auto}
-  @media (max-width:720px){ .hero{grid-template-columns:1fr;gap:24px;min-height:0;padding-top:6px;width:auto;margin-inline:0} }
+  .hero{display:block;text-align:center;padding-top:clamp(10px,4vh,40px);margin-bottom:6px}
+  @media (max-width:720px){ .hero{padding-top:6px} }
   .hero .eyebrow{color:var(--terra)}
-  .hero h1{font-weight:700;font-size:clamp(28px,3.9vw,50px);line-height:1.08;letter-spacing:-.015em;margin:.2em 0 .35em}
-  .hero .lead{font-size:clamp(15.5px,1.6vw,17.5px);max-width:46ch}
+  .hero h1{font-weight:700;font-size:clamp(28px,3.9vw,50px);line-height:1.08;letter-spacing:-.015em;margin:.25em auto .4em;max-width:19ch}
+  .hero .lead{font-size:clamp(15.5px,1.6vw,17.5px);max-width:54ch;margin-left:auto;margin-right:auto}
   .explore-hint{text-align:center;margin:18px 0 2px;color:var(--muted);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px}
   .explore-hint::before,.explore-hint::after{content:"";height:1px;width:46px;background:var(--line)}
@@ -1031,12 +1028,8 @@ function quotesBand(){
 }
 
 function viewIntro(){
-  var orbit='<div class="orbit">'+
-    '<span class="ring"></span><span class="ring r2"></span><span class="ring r3"></span>'+
-    '<button type="button" class="hub hub-cta" data-go="1"><span class="k">Ruta del Saber</span><span class="t">Comenzar</span><span class="hub-go" aria-hidden="true">→</span></button>'+
-    orbitNodes()+
-  '</div>';
-  // Resumen ejecutivo: qué es, qué recibes y cuánto toma — con un CTA visible en todos los tamaños.
+  // Resumen ejecutivo: qué es, qué recibes y cuánto toma — es el contenido principal
+  // de la portada (reemplaza al orbe) y lleva el CTA para comenzar.
   var resumen='<section class="resumen-band">'+
     '<p class="eyebrow" style="text-align:center;color:var(--muted)">El regalo, en breve</p>'+
     '<h2 class="rb-title">Una ruta de aprendizaje hecha a tu medida — y un primer paso de regalo.</h2>'+
@@ -1054,11 +1047,9 @@ function viewIntro(){
     '<div class="hero-copy">'+
       '<p class="eyebrow">Ruta del Saber · Regalo de fin de año</p>'+
       '<h1>Aprender más rápido que la competencia es la única ventaja sostenible.</h1>'+
-      '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, Montblanc te regala <b>Ruta del Saber</b>: una ruta de IA hecha a tu medida para dar ese primer paso. Toca el círculo —o el botón de abajo— para comenzar.</p>'+
+      '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, Montblanc te regala <b>Ruta del Saber</b>: una ruta de IA hecha a tu medida para dar ese primer paso.</p>'+
     '</div>'+
-    '<div class="hero-art">'+orbit+'</div>'+
   '</section>'+
-  '<div class="explore-hint">Explorar</div>'+
   resumen+
   quotesBand();
 }
