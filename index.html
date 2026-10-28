@@ -99,11 +99,16 @@
     background:var(--accent-soft);color:var(--accent-ink);font-size:12px;font-weight:600}
 
   /* ===== Portada editorial (estilo colección) ===== */
-  .hero{display:block;text-align:center;padding-top:clamp(10px,4vh,40px);margin-bottom:6px}
-  @media (max-width:720px){ .hero{padding-top:6px} }
+  .hero{display:grid;grid-template-columns:1.05fr .9fr;gap:clamp(26px,4vw,56px);align-items:center;
+    text-align:left;padding-top:clamp(8px,3vh,30px);margin-bottom:6px}
   .hero .eyebrow{color:var(--terra)}
-  .hero h1{font-weight:700;font-size:clamp(28px,3.9vw,50px);line-height:1.08;letter-spacing:-.015em;margin:.25em auto .4em;max-width:19ch}
-  .hero .lead{font-size:clamp(15.5px,1.6vw,17.5px);max-width:54ch;margin-left:auto;margin-right:auto}
+  .hero h1{font-weight:700;font-size:clamp(27px,3.2vw,44px);line-height:1.08;letter-spacing:-.015em;margin:.25em 0 .4em;max-width:16ch}
+  .hero .lead{font-size:clamp(15px,1.5vw,17px);max-width:46ch}
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;text-align:center;gap:26px;padding-top:6px}
+    .hero h1{margin-left:auto;margin-right:auto}
+    .hero .lead{margin-left:auto;margin-right:auto}
+  }
   .explore-hint{text-align:center;margin:18px 0 2px;color:var(--muted);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px}
   .explore-hint::before,.explore-hint::after{content:"";height:1px;width:46px;background:var(--line)}
@@ -197,19 +202,24 @@
   .qcard .by{display:block;font-style:normal;font-weight:700;font-size:12.5px;letter-spacing:.04em;
     color:var(--accent-ink);margin-top:12px}
 
-  /* Resumen ejecutivo (pantalla de entrada) */
-  .resumen-band{margin:28px 0 8px;border-top:1px solid var(--line);padding-top:26px}
-  .resumen-band .rb-title{font-family:var(--font-display);font-weight:500;font-size:clamp(20px,2.4vw,27px);
-    line-height:1.18;letter-spacing:-.01em;color:var(--ink);text-align:center;max-width:24ch;margin:6px auto 0}
-  .rb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
-  @media (max-width:760px){ .rb-grid{grid-template-columns:1fr} }
-  .rcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 20px 22px;
-    box-shadow:0 12px 32px -24px var(--shadow)}
-  .rcard .ric{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:var(--surface-2);
-    font-size:20px;margin-bottom:12px}
-  .rcard b{display:block;font-size:15.5px;color:var(--ink);margin-bottom:5px}
-  .rcard span{font-size:13.5px;color:var(--muted);line-height:1.5}
-  .rb-cta{display:flex;justify-content:center;margin-top:24px}
+  /* Guía "cómo funciona" (panel derecho de la portada, donde iba el orbe) */
+  .guia{background:var(--surface);border:1px solid var(--line);border-radius:20px;
+    padding:26px 26px 24px;box-shadow:0 26px 64px -36px var(--shadow)}
+  .guia .g-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:700}
+  .guia .g-ttl{font-family:var(--font-display);font-weight:600;font-size:clamp(19px,2vw,22px);
+    line-height:1.18;letter-spacing:-.01em;color:var(--ink);margin:6px 0 20px}
+  .gsteps{display:block}
+  .gstep{display:flex;gap:15px;align-items:flex-start;padding-bottom:18px;position:relative}
+  .gsteps .gstep:not(:last-child)::before{content:"";position:absolute;left:17px;top:38px;bottom:0;
+    width:2px;background:var(--line)}
+  .gstep .gn{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;
+    font-weight:700;font-size:16px;background:var(--navy);color:#fff;position:relative;z-index:1}
+  .gstep.gift .gn{background:var(--gift)}
+  .gstep .gtx{min-width:0}
+  .gstep .gtx b{display:block;font-size:16px;color:var(--ink);margin-bottom:3px;line-height:1.25}
+  .gstep .gtx span{display:block;font-size:14px;color:var(--muted);line-height:1.5}
+  .g-cta{margin-top:6px}
+  .g-cta .btn{width:100%;justify-content:center;font-size:16px;padding:15px 20px}
 
   /* Botones */
   .btn{appearance:none;-webkit-appearance:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;
@@ -1028,29 +1038,31 @@ function quotesBand(){
 }
 
 function viewIntro(){
-  // Resumen ejecutivo: qué es, qué recibes y cuánto toma — es el contenido principal
-  // de la portada (reemplaza al orbe) y lleva el CTA para comenzar.
-  var resumen='<section class="resumen-band">'+
-    '<p class="eyebrow" style="text-align:center;color:var(--muted)">El regalo, en breve</p>'+
-    '<h2 class="rb-title">Una ruta de aprendizaje hecha a tu medida — y un primer paso de regalo.</h2>'+
-    '<div class="rb-grid">'+
-      '<div class="rcard"><span class="ric" aria-hidden="true">🧭</span><b>Tu ruta por etapas</b>'+
-        '<span>De lo simple a lo avanzado, según tu objetivo y la herramienta de IA que ya usas.</span></div>'+
-      '<div class="rcard"><span class="ric" aria-hidden="true">🎁</span><b>Un regalo para empezar</b>'+
-        '<span>Un curso de cortesía — o una licencia de Claude, o una hora con un consultor. Tú eliges.</span></div>'+
-      '<div class="rcard"><span class="ric" aria-hidden="true">⏱️</span><b>En un minuto</b>'+
-        '<span>Respondes 3 preguntas y te mostramos tu ruta. Luego la recorres a tu ritmo.</span></div>'+
+  // Panel "cómo funciona" a la derecha del titular (donde iba el orbe): guía de la mano,
+  // paso a paso, para alguien sin manejo tecnológico. Lleva el CTA para comenzar.
+  var guia='<aside class="guia">'+
+    '<p class="g-k">Cómo funciona</p>'+
+    '<h2 class="g-ttl">Tu ruta, en 4 pasos simples</h2>'+
+    '<div class="gsteps">'+
+      '<div class="gstep"><span class="gn">1</span><span class="gtx">'+
+        '<b>Respondes 3 preguntas</b><span>Sencillas y sin tecnicismos. Te toma un par de minutos.</span></span></div>'+
+      '<div class="gstep"><span class="gn">2</span><span class="gtx">'+
+        '<b>Te armamos tu ruta</b><span>Una lista de pasos claros, del más fácil al más avanzado.</span></span></div>'+
+      '<div class="gstep gift"><span class="gn">3</span><span class="gtx">'+
+        '<b>Recibes tu regalo 🎁</b><span>Un curso pagado para empezar. Si prefieres, una licencia de Claude o una hora con un consultor que te acompaña.</span></span></div>'+
+      '<div class="gstep"><span class="gn">4</span><span class="gtx">'+
+        '<b>Aprendes a tu ritmo</b><span>Sin apuro. Avanzas paso a paso, cuando quieras.</span></span></div>'+
     '</div>'+
-    '<div class="rb-cta"><button type="button" class="btn" data-go="1">Comenzar mi ruta <span aria-hidden="true">→</span></button></div>'+
-  '</section>';
+    '<div class="g-cta"><button type="button" class="btn" data-go="1">Comenzar — son 3 preguntas <span aria-hidden="true">→</span></button></div>'+
+  '</aside>';
   return '<section class="hero">'+
     '<div class="hero-copy">'+
       '<p class="eyebrow">Ruta del Saber · Regalo de fin de año</p>'+
       '<h1>Aprender más rápido que la competencia es la única ventaja sostenible.</h1>'+
       '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, Montblanc te regala <b>Ruta del Saber</b>: una ruta de IA hecha a tu medida para dar ese primer paso.</p>'+
     '</div>'+
+    guia+
   '</section>'+
-  resumen+
   quotesBand();
 }
 
