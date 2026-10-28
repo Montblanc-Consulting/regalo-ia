@@ -99,16 +99,29 @@
     background:var(--accent-soft);color:var(--accent-ink);font-size:12px;font-weight:600}
 
   /* ===== Portada editorial (estilo colección) ===== */
-  .hero{display:grid;grid-template-columns:1.05fr .9fr;gap:clamp(26px,4vw,56px);align-items:center;
-    text-align:left;padding-top:clamp(8px,3vh,30px);margin-bottom:6px}
+  .hero{display:grid;grid-template-columns:1.1fr .95fr .9fr;gap:clamp(20px,2.4vw,38px);align-items:start;
+    text-align:left;padding-top:clamp(8px,3vh,30px);margin-bottom:6px;
+    /* Rompe el ancho del contenedor (720px) para dar aire a las 3 columnas, centrado en el viewport */
+    width:min(1120px,100vw - 32px);position:relative;left:50%;margin-left:calc(min(1120px,100vw - 32px) / -2)}
   .hero .eyebrow{color:var(--terra)}
-  .hero h1{font-weight:700;font-size:clamp(27px,3.2vw,44px);line-height:1.08;letter-spacing:-.015em;margin:.25em 0 .4em;max-width:16ch}
+  .hero h1{font-weight:700;font-size:clamp(26px,3vw,42px);line-height:1.08;letter-spacing:-.015em;margin:.25em 0 .4em;max-width:16ch}
   .hero .lead{font-size:clamp(15px,1.5vw,17px);max-width:46ch}
-  @media (max-width:860px){
-    .hero{grid-template-columns:1fr;text-align:center;gap:26px;padding-top:6px}
+  @media (max-width:1040px){
+    .hero{grid-template-columns:1fr 1fr;align-items:start}
+    .hero .hero-copy{grid-column:1 / -1}
+  }
+  @media (max-width:640px){
+    .hero{grid-template-columns:1fr;text-align:center;gap:24px;padding-top:6px;
+      width:auto;left:auto;margin-left:0}
+    .hero .hero-copy{grid-column:auto}
     .hero h1{margin-left:auto;margin-right:auto}
     .hero .lead{margin-left:auto;margin-right:auto}
   }
+  /* Portada: columna de citas (3ª columna) */
+  .quotes-col{display:flex;flex-direction:column;gap:12px}
+  .quotes-col .qc-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:2px 0 0}
+  .quotes-col .qcard{margin:0;font-size:13.5px;line-height:1.4;padding:15px 16px}
+  .quotes-col .qcard .by{font-size:11.5px;margin-top:9px}
   .explore-hint{text-align:center;margin:18px 0 2px;color:var(--muted);font-size:11px;letter-spacing:.18em;
     text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px}
   .explore-hint::before,.explore-hint::after{content:"";height:1px;width:46px;background:var(--line)}
@@ -1028,13 +1041,13 @@ function orbitNodes(){
 
 function qcard(t,by){return '<blockquote class="qcard">“'+t+'”<span class="by">'+by+'</span></blockquote>';}
 function quotesBand(){
-  return '<div class="quotes-band">'+
-    '<p class="eyebrow" style="text-align:center;color:var(--muted)">Por qué este regalo</p>'+
-    '<div class="qb-grid">'+
-      qcard('The ability to learn faster than your competitors may be the only sustainable competitive advantage.','Arie de Geus')+
-      qcard('The rate at which organizations learn may become the only sustainable source of competitive advantage.','Ray Stata, Analog Devices')+
-      qcard('The learn-it-all will always do better than the know-it-all.','Satya Nadella, Microsoft')+
-    '</div></div>';
+  // Tercera columna de la portada: por qué aprender rápido importa. Autor + rol verificados.
+  return '<aside class="quotes-col">'+
+    '<p class="qc-k">Por qué este regalo</p>'+
+      qcard('The ability to learn faster than your competitors may be the only sustainable competitive advantage.','Arie de Geus · Jefe de planificación, Shell')+
+      qcard('The rate at which organizations learn may become the only sustainable source of competitive advantage.','Ray Stata · Cofundador, Analog Devices')+
+      qcard('The learn-it-all will always do better than the know-it-all.','Satya Nadella · CEO, Microsoft')+
+  '</aside>';
 }
 
 function viewIntro(){
@@ -1062,8 +1075,8 @@ function viewIntro(){
       '<p class="lead">Hoy la ventaja ya no está en tener más información, sino en aprender a usarla antes que el resto. Por eso, como regalo de fin de año, Montblanc te regala <b>Ruta del Saber</b>: una ruta de IA hecha a tu medida para dar ese primer paso.</p>'+
     '</div>'+
     guia+
-  '</section>'+
-  quotesBand();
+    quotesBand()+
+  '</section>';
 }
 
 function viewTema(){
